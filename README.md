@@ -12,3 +12,5 @@ Sample WebSDK integration
 [Custom Service Worker](custom-serviceworker.html)
 
 [Web Personalization](web-personalization.html)
+
+[Angular App Sample Code](angular-sample/)
