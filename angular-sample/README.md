@@ -1,3 +1,9 @@
+# MoEngage
+
+write the moengage script and initialization code in `index.html` file.  
+Then replace the App Id with your App Id.
+For further info, follow the [documentation](https://docs.moengage.com/docs/web-sdk-integration)
+
 # AngularSample
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.3.8.
