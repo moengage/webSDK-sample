@@ -14,3 +14,5 @@ Sample WebSDK integration
 [Web Personalization](web-personalization.html)
 
 [Angular App Sample Code](angular-sample/)
+
+[React App Sample Code](react-sample/)
