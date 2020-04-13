@@ -16,3 +16,5 @@ Sample WebSDK integration
 [Angular App Sample Code](angular-sample/)
 
 [React App Sample Code](react-sample/)
+
+[Nuxt JS SPA](nuxt-spa/)
