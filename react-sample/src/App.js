@@ -3,6 +3,13 @@ import logo from './logo.svg';
 import './App.css';
 
 class App extends Component {
+  constructor() {
+    super();
+    this.trackEvent = this.trackEvent.bind();
+  }
+  trackEvent() {
+    window.Moengage.track_event('Sample', {integration: 'React'})
+  }
   render() {
     return (
       <div className="App">
@@ -13,6 +20,10 @@ class App extends Component {
         <p className="App-intro">
           To get started, edit <code>src/App.js</code> and save to reload.
         </p>
+
+        <button onClick={this.trackEvent}>
+            Track Sample Event
+        </button>
       </div>
     );
   }
