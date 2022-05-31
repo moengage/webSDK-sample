@@ -20,3 +20,5 @@ Sample WebSDK integration
 [Nuxt JS SPA](nuxt-spa/)
 
 [Next JS](nextjs/)
+
+[Google Tag Manager](google-tag-manager/)
