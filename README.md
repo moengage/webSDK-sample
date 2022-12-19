@@ -25,4 +25,4 @@ Sample WebSDK integration
 
 [LG Web OS](lg-web-os/)
 
-[Samsung Tizen OS) (samsung-tizen-os/samsungTizenOs/)
+[Samsung Tizen OS] (samsung-tizen-os/samsungTizenOs/)
