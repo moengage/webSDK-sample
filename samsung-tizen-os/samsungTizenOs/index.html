@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <meta name="description" content="Canvas Clock - Canvas API Tutorial"/>
+
+    <title>Canvas Clock - Canvas API Tutorial</title>
+
+    <link rel="stylesheet" type="text/css" href="css/style.css"/>
+    
+    <script src="js/main.js"></script>
+    <script type="text/javascript">
+	  (function(i,s,o,g,r,a,m,n){i.moengage_object=r;t={};q=function(f){return function(){(i.moengage_q=i.moengage_q||[]).push({f:f,a:arguments})}};f=['track_event','add_user_attribute','add_first_name','add_last_name','add_email','add_mobile','add_user_name','add_gender','add_birthday','destroy_session','add_unique_user_id','moe_events','call_web_push','track','location_type_attribute'],h={onsite:["getData","registerCallback"]};for(k
+	  in f){t[f[k]]=q(f[k])}for(k in h)for(l in h[k]){null==t[k]&&(t[k]={}),t[k][h[k][l]]=q(k+"."+h[k][l])}a=s.createElement(o);m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m);i.moe=i.moe||function(){n=arguments[0];return t};a.onload=function(){if(n){i[r]=moe(n)}}})(window,document,'script','https://cdn.moengage.com/webpush/moe_webSdk.min.latest.js','Moengage')
+	
+	
+	  Moengage = moe({
+	  app_id:"HXZH45ZFO7OAC98BVQ14773N",
+		debug_logs: 0,
+		cluster: 'DC_3',
+		cards: {
+			enable:true,
+			placeholder: '#card',
+			webFloating: {
+                    enable: true,
+                    icon: "https://app-cdn.moengage.com/sdk/bell-icon.svg",
+                    postion: "0px 10px 40px 0",
+                    countBackgroundColor: "#FF5A5F",
+                    countColor: "#fff",
+                    iconBackgroundColor: "#D9DFED"
+                }
+		}
+	  });
+	  </script>
+	  <script>
+			document.querySelector('#email_id').addEventListener('click', function() {
+				Moengage.add_email('abc@xyz.com');
+			})
+			document.querySelector('#first_name').addEventListener('click', function() {
+				Moengage.add_email('moengage');
+			})
+		</script>
+</head>
+
+<body>
+    <h1>MoEngage Sample Application</h1>
+    <canvas class="canvas"></canvas>
+</body>
+</html>

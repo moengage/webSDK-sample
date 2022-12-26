@@ -24,3 +24,5 @@ Sample WebSDK integration
 [Google Tag Manager](google-tag-manager/)
 
 [LG Web OS](lg-web-os/)
+
+[Samsung Tizen OS](samsung-tizen-os/samsungTizenOs/)
