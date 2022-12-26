@@ -1,7 +1,7 @@
 {
   "id": "com.domain.app",
   "version": "0.0.1",
-  "vendor": "My Company",
+  "vendor": "Moengae LG OS Sample App",
   "type": "web",
   "main": "index.html",
   "title": "new app",
