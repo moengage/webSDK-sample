@@ -1,0 +1,127 @@
+@use 'styles/variables/theme';
+@use 'styles/variables/media';
+
+@keyframes moveIn {
+  from { transform: translateX(-200%); }
+  to { transform: translateX(0); }
+}
+
+@keyframes moveOut {
+  from { transform: translateX(0); }
+  to { transform: translateX(200%); }
+}
+
+.statusBarHighlight {
+  background-color: var(--status-bar-highlight-color);
+  height: env(safe-area-inset-top);
+  left: 0;
+  margin: 0;
+  position: fixed;
+  top: 0;
+  width: 100vw;
+
+  @include theme.dark-mode {
+    display: none;
+  }
+}
+
+@mixin themeTogglerSettingsOpen {
+  opacity: 1;
+  transform: translateX(-50%) scale(1);
+}
+
+.themeToggler {
+  $theme-toggler: &;
+
+  align-items: center;
+  border: var(--border);
+  border-radius: 50%;
+  display: flex;
+  height: 50px;
+  justify-content: center;
+  overflow: hidden;
+  padding: 6px;
+  position: relative;
+  width: 50px;
+
+  &Icon {
+    --icon-size: 30px;
+
+    fill: transparent;
+    position: absolute;
+  }
+
+  &Settings {
+    display: flex;
+    flex-flow: column;
+    position: absolute;
+    padding: var(--content-padding);
+    top: calc(var(--header-navigation-height) - 5px);
+    left: 50%;
+    opacity: 0;
+    transform: translateX(-50%) scale(0);
+    box-sizing: border-box;
+    background-color: var(--primary-block-color);
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow);
+    transition-duration: 200ms;
+    transition-property: transform, opacity;
+    transition-timing-function: ease-in-out;
+
+    > li {
+      display: flex;
+      flex-flow: row;
+      align-items: center;
+      gap: 10px;
+
+      &:not(:first-child) {
+        margin: var(--content-padding) 0 0;
+      }
+    }
+
+    label {
+      white-space: nowrap;
+    }
+  }
+
+  &SettingsOpen {
+    #{$theme-toggler}Settings {
+      @include themeTogglerSettingsOpen;
+    }
+  }
+
+  &Wrapper {
+    align-items: center;
+    display: flex;
+    height: 100%;
+    margin: 0 0 0 1rem;
+    position: relative;
+
+    &:hover {
+      #{$theme-toggler}Settings {
+        @include media.before-desktop {
+          @include themeTogglerSettingsOpen;
+        }
+      }
+    }
+  }
+
+  > * {
+
+    @include theme.dark-mode {
+      &:first-child { animation-name: moveIn; }
+      &:last-child { animation-name: moveOut; }
+    }
+
+    &:first-child,
+    &:last-child {
+      animation-duration: 500ms;
+      animation-fill-mode: forwards;
+      animation-iteration-count: initial;
+      animation-timing-function: ease-in-out;
+    }
+
+    &:first-child { animation-name: moveOut; }
+    &:last-child { animation-name: moveIn; }
+  }
+}

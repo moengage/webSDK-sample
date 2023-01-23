@@ -1,0 +1,57 @@
+@use 'styles/variables/media';
+@use 'styles/variables/theme';
+
+.items {
+  align-items: center;
+  display: flex;
+  flex-flow: row;
+  justify-content: flex-end;
+  list-style: none;
+  padding: 0;
+
+  @include media.mobile {
+    background-color: var(--primary-block-color);
+    bottom: 0;
+    box-shadow: var(--shadow);
+    box-sizing: border-box;
+    height: var(--header-items-height);
+    justify-content: space-evenly;
+    left: 0;
+    padding: 1rem 1rem max(env(safe-area-inset-bottom), 1rem);
+    position: fixed;
+    width: 100vw;
+  }
+
+  a {
+    color: var(--primary-text-color);
+    font-weight: 500;
+  }
+
+  > li {
+    border-radius: 20px;
+    font-size: 18px;
+    margin: 0 5px;
+    padding: 10px 20px;
+    transition: background-color 200ms;
+
+    &:last-child {
+      @include media.after-mobile {
+        margin: 0 0 0 5px;
+      }
+    }
+  }
+}
+
+.active {
+  --background-color: rgba(0, 0, 0, 0.05);
+
+  background-color: var(--background-color);
+
+  @include theme.dark-mode {
+    --background-color: rgba(255, 255, 255, 0.05);
+  }
+
+  > a {
+    color: var(--highlight-color);
+  }
+}

@@ -1,0 +1,35 @@
+.pageList {
+  text-align: center;
+
+  p {
+    font-size: 18px;
+    line-height: 1.4;
+    margin: 0 auto;
+    max-width: 800px;
+    padding: 0 1rem;
+  }
+
+  &Container {
+    display: flex;
+    flex-flow: row;
+    flex-wrap: wrap;
+    font-size: 20px;
+    justify-content: center;
+    margin: 1rem 0 0;
+
+    a,
+    span {
+      color: var(--primary-text-color);
+      display: inline-block;
+      padding: 2rem;
+    }
+
+    > li {
+      background-color: var(--primary-block-color);
+      border-radius: var(--border-radius);
+      box-shadow: var(--shadow);
+      margin: 1rem;
+      min-width: 200px;
+    }
+  }
+}

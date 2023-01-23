@@ -1,0 +1,27 @@
+@use 'styles/variables/media';
+
+.footer {
+  background-color: var(--primary-block-color);
+  box-sizing: border-box;
+  display: flex;
+  flex-wrap: wrap;
+  font-size: 16px;
+  font-weight: 500;
+  justify-content: center;
+  padding:
+    var(--content-padding)
+    var(--content-padding)
+    calc(var(--header-items-height) + var(--content-padding));
+  width: 100%;
+
+  p {
+    display: inline-block;
+    margin: 0 10px;
+  }
+
+  a {
+    color: var(--secondary-text-color);
+    font-size: 17px;
+    font-weight: 600;
+  }
+}

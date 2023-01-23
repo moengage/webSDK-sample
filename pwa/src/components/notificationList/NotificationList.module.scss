@@ -1,0 +1,21 @@
+@use 'styles/variables/media';
+
+.notificationList {
+  --animation-duration: 0;
+  display: flex;
+  flex-flow: column;
+  left: 50%;
+  max-width: 300px;
+
+  position: fixed;
+  top: calc(var(--header-height) + var(--content-padding));
+  transform: translateX(-50%);
+  z-index: 100;
+
+  @include media.mobile {
+    bottom: calc(var(--header-items-height) + var(--content-padding));
+    padding: 0 var(--content-padding);
+    top: auto;
+    width: 100vw;
+  }
+}

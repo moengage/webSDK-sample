@@ -1,0 +1,57 @@
+@use 'styles/variables/placeholder' as *;
+
+.image {
+  background: var(--primary-block-color);
+  display: inline-block;
+  overflow: hidden;
+  pointer-events: none;
+  position: relative;
+  width: 100%;
+
+  &Content {
+    position: absolute;
+  }
+
+  img {
+    display: block;
+    height: 100%;
+    object-fit: cover;
+    object-position: 50% 50%;
+    width: 100%;
+
+    &::after {
+      background: var(--primary-block-color);
+      content: '';
+      height: 100%;
+      left: 0;
+      position: absolute;
+      top: 0;
+      width: 100%;
+    }
+  }
+}
+
+.IMAGE {
+  @at-root .placeholder,
+  &_LOADING { @include placeholder; }
+
+  &_LOADED { background: none; }
+
+  &_NOT_FOUND::after { content: 'Image not found'; }
+  &_NOT_SPECIFIED::after { content: 'Image not specified'; }
+
+  &_NOT_FOUND::after,
+  &_NOT_SPECIFIED::after {
+    align-items: center;
+    color: var(--primary-text-color);
+    display: flex;
+    font-size: 14px;
+    height: 100%;
+    justify-content: center;
+    left: 0;
+    margin: auto;
+    position: absolute;
+    top: 0;
+    width: 100%;
+  }
+}
