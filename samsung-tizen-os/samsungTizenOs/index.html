@@ -1,49 +1,565 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <meta charset="utf-8" />
-	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
-    <meta name="description" content="Canvas Clock - Canvas API Tutorial"/>
-
-    <title>Canvas Clock - Canvas API Tutorial</title>
-
-    <link rel="stylesheet" type="text/css" href="css/style.css"/>
-    
+  <head>
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+    <meta
+      name="viewport"
+      content="user-scalable=no, width=device-width, initial-scale=1.0"
+    />
+    <link
+      rel="stylesheet"
+      href="css/semantic.min.css"
+    />
+    <title>New webSDK Test Page</title>
+    <script src="js/moe_webSdk_webp.min.latest.js?app_id=3RADPYNEBZ2MCOJ43EEW5FWV&cluster=DC_1"></script>
     <script src="js/main.js"></script>
-    <script type="text/javascript">
-	  !function(e,n,i,t,a,r,o,d){var s=e[a]=e[a]||[];if(s.invoked=0,s.initialised>0||s.invoked>0)return console.error("MoEngage Web SDK initialised multiple times. Please integrate the Web SDK only once!"),!1;e.moengage_object=a;var l={},g=function n(i){return function(){for(var n=arguments.length,t=Array(n),a=0;a<n;a++)t[a]=arguments[a];(e.moengage_q=e.moengage_q||[]).push({f:i,a:t})}},u=["track_event","add_user_attribute","add_first_name","add_last_name","add_email","add_mobile","add_user_name","add_gender","add_birthday","destroy_session","add_unique_user_id","moe_events","call_web_push","track","location_type_attribute"],m={onsite:["getData","registerCallback"]};for(var c in u)l[u[c]]=g(u[c]);for(var v in m)for(var f in m[v])null==l[v]&&(l[v]={}),l[v][m[v][f]]=g(v+"."+m[v][f]);r=n.createElement(i),o=n.getElementsByTagName("head")[0],r.async=1,r.src=t,o.appendChild(r),e.moe=e.moe||function(){return(s.invoked=s.invoked+1,s.invoked>1)?(console.error("MoEngage Web SDK initialised multiple times. Please integrate the Web SDK only once!"),!1):(d=arguments.length<=0?void 0:arguments[0],l)},r.addEventListener("load",function(){if(d)return e[a]=e.moe(d),e[a].initialised=e[a].initialised+1||1,!0}),r.addEventListener("error",function(){return console.error("Moengage Web SDK loading failed."),!1})}(window,document,"script","https://cdn.moengage.com/webpush/moe_webSdk.min.latest.js","Moengage");
-	
-	
-	  Moengage = moe({
-	  app_id:"HXZH45ZFO7OAC98BVQ14773N",
-		debug_logs: 0,
-		cluster: 'DC_3',
-		cards: {
-			enable:true,
-			placeholder: '#card',
-			webFloating: {
-                    enable: true,
-                    icon: "https://app-cdn.moengage.com/sdk/bell-icon.svg",
-                    postion: "0px 10px 40px 0",
-                    countBackgroundColor: "#FF5A5F",
-                    countColor: "#fff",
-                    iconBackgroundColor: "#D9DFED"
-                }
-		}
-	  });
-	  </script>
-	  <script>
-			document.querySelector('#email_id').addEventListener('click', function() {
-				Moengage.add_email('abc@xyz.com');
-			})
-			document.querySelector('#first_name').addEventListener('click', function() {
-				Moengage.add_email('moengage');
-			})
-		</script>
-</head>
 
-<body>
-    <h1>MoEngage Sample Application</h1>
-    <canvas class="canvas"></canvas>
-</body>
+
+    <style>
+      .moe-modal-branding img {
+        vertical-align: bottom !important;
+        width: 63px !important;
+        height: 30px !important;
+        padding-right: 2px !important;
+        display: inline-block !important;
+        margin-bottom: -9px;
+        margin-left: -5px;
+      }
+
+      .moe-modal-branding span a {
+        text-decoration: none !important;
+        color: #000 !important;
+        font-size: 10px !important;
+        line-height: 1.2em !important;
+        font-weight: 400 !important;
+      }
+
+      .moe-modal-branding {
+        float: left;
+        font-size: 10px;
+        margin-top: -2px;
+        font-family: Arial !important;
+        line-height: 1.2em !important;
+      }
+
+      .moe-chrome-style-notification-safari {
+        width: 422px;
+        top: 1px;
+        left: calc(50% - 211px);
+        background-color: #ffffff;
+        margin: 0;
+        padding: 0;
+      }
+
+      .moe-chrome-style-notification {
+        box-shadow: 0 0 4px #888;
+        font-size: 11px;
+        font-weight: 400;
+        position: fixed;
+        z-index: 2147483647;
+      }
+
+      .moe-safari-notification-inner-wrapper {
+        margin: 0;
+        padding: 0 20px 10px;
+      }
+
+      .moe-notification-image-wrapper-safari {
+        position: relative;
+        margin: 15px 15px 0 0 !important;
+        padding: 0 !important;
+        display: inline-block;
+      }
+
+      .moe-chrome-style-notification-safari * {
+        word-spacing: normal !important;
+        letter-spacing: normal !important;
+        font-family: 'Open Sans', sans-serif !important;
+      }
+
+      .moe-text-wrapper-safari {
+        position: relative !important;
+        padding: 10px 0 0 !important;
+        color: #000 !important;
+        text-align: left !important;
+        margin: 0 !important;
+        line-height: 1.4em !important;
+        display: inline-block !important;
+        width: calc(100% - 80px) !important;
+      }
+
+      .moe-notification-title-safari {
+        margin-bottom: 5px;
+        text-align: left;
+        font-size: 14px;
+        font-weight: 700;
+        line-height: 1.4em;
+        color: #000;
+        font-family: 'Open Sans', sans-serif;
+      }
+
+      .moe-notification-message-safari {
+        font-size: 12px !important;
+        line-height: 1.4em !important;
+        margin: 10px 0 !important;
+        padding: 0 !important;
+        text-align: left !important;
+        font-family: 'Open Sans', sans-serif !important;
+      }
+
+      .moe-chrome-style-notification .moe-button-wrapper {
+        float: right !important;
+        margin: 0 !important;
+        padding: 0 !important;
+      }
+
+      .moe-chrome-style-notification-safari
+        .moe-chrome-style-notification-btn.moe-btn-close {
+        background: #fff !important;
+        color: #000 !important;
+        border-color: #ccc !important;
+        margin-right: 20px !important;
+        width: 100px !important;
+      }
+
+      .moe-chrome-style-notification-safari .moe-chrome-style-notification-btn {
+        width: 90px !important;
+        height: 26px !important;
+        font-size: 14px !important;
+        cursor: pointer !important;
+        line-height: 1.1em !important;
+        border-radius: 4px !important;
+        color: #fff !important;
+        background: linear-gradient(to bottom, #23bd9f, #12ac8e) !important;
+        border: 1px solid #12ac8e !important;
+        display: inline-block !important;
+        font-weight: 400 !important;
+        margin: 0 !important;
+        padding: 5px !important;
+        text-transform: none !important;
+        box-sizing: border-box !important;
+        font-family: Arial !important;
+        text-shadow: none !important;
+        box-shadow: none !important;
+        white-space: nowrap !important;
+      }
+
+      .moe-notification-image-wrapper-safari img {
+        height: 65px !important;
+        width: 65px !important;
+      }
+    </style>
+
+    <style>
+      #subscription-floating-button {
+        position: fixed;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        left: 15px;
+        bottom: 15px;
+        width: 4em;
+        height: 4em;
+        line-height: 6em;
+        background-color: white;
+        border-radius: 1000px;
+        cursor: pointer;
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+      }
+
+      #subscription-floating-button:before {
+        content: '';
+        position: absolute;
+        left: 5px;
+        top: 5px;
+        bottom: 5px;
+        right: 5px;
+        border: solid 2px #e54b4d;
+        border-radius: 100%;
+        opacity: 0.7;
+      }
+
+      #subscription-floating-button img {
+        max-width: 70%;
+      }
+
+      #subscription-floating-button #tooltip {
+        position: absolute;
+        left: calc(100% + 15px);
+        top: 50%;
+        transform: translateY(-50%);
+        line-height: normal;
+        white-space: nowrap;
+        background-color: #000;
+        color: white;
+        font-family: sans-serif;
+        font-size: 14px;
+        padding: 0.8em;
+        border-radius: 5px;
+        opacity: 0;
+        -webkit-font-smoothing: antialiased;
+        transition: all 0.3s;
+        pointer-events: none;
+      }
+
+      #subscription-floating-button #tooltip:before {
+        content: '';
+        position: absolute;
+        width: 15px;
+        height: 15px;
+        background-color: #000;
+        left: -7px;
+        top: 50%;
+        margin-top: -8px;
+        transform: rotate(45deg);
+        user-select: none;
+      }
+
+      #subscription-floating-button:hover img {
+        animation: shake 0.82s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+      }
+
+      #subscription-floating-button:hover #tooltip {
+        opacity: 1;
+      }
+
+      @keyframes shake {
+        10%,
+        90% {
+          transform: rotate(-2deg);
+        }
+
+        20%,
+        80% {
+          transform: rotate(3deg);
+        }
+
+        30%,
+        50%,
+        70% {
+          transform: rotate(-5deg);
+        }
+
+        40%,
+        60% {
+          transform: rotate(5deg);
+        }
+      }
+
+      .navigation-row ul {
+        display: flex;
+        align-items: center;
+        list-style-type: none;
+        padding-left: 0;
+        gap: 30px;
+      }
+      .navigation-row ul li a:visited,
+      .navigation-row ul li a:link {
+        color: #000;
+        text-decoration: none;
+      }
+    </style>
+    <script src="js/jquery.min.js"></script>
+    <script src="js/semantic.min.js"></script>
+  </head>
+
+  <body style="padding:3em; height: 1000px;">
+    <div class="card-data floating-icon"></div>
+    <nav class="navigation-row">
+      <ul>
+        <li>
+          <a id="nav-home" href="/">Home</a>
+        </li>
+        <li>
+          <a id="nav-about" href="/about.html"
+            >About</a
+          >
+        </li>
+        <li>
+          <a
+            id="nav-contact"
+            href="/contact.html"
+            >Contact</a
+          >
+        </li>
+        <button id="card" class="ui button blue" style="margin-left: auto;">Open Cards</button>
+      </ul>
+    </nav>
+    <h1>
+      Testing new webSDK
+      <span
+        style="vertical-align: middle;margin-bottom: 5px;"
+        class="ui teal tag label"
+        id="branch"
+      ></span>
+      <span class="page-name-holder">Home</span>
+    </h1>
+    <button id="showSoftAskButton" class="ui red button">Show Soft Ask</button>
+    <button id="login" class="ui green button">Login</button>
+    <button id="logout" class="ui red button">Logout</button>
+    <div class="ui warning compact message">
+      <div class="header">
+        <!-- <i class="warning sign icon"></i> -->
+        Only in case of self-handled opt-in
+      </div>
+    </div>
+    <div class="ui grid">
+      <div class="five wide column">
+        <h2>User Attribute</h2>
+        <form id="form_add_attribute" class="ui form">
+          <div class="field">
+            <label>Attribute Name *</label>
+            <input type="text" id="user_attr" placeholder="eg. City" />
+          </div>
+          <div class="field">
+            <label>Attribute Value *</label>
+            <input
+              type="text"
+              id="user_attr_value"
+              placeholder="eg. Bengaluru"
+            />
+          </div>
+          <button class="ui button">Add</button>
+        </form>
+      </div>
+      <div class="five wide column">
+        <h2>Track Event</h2>
+        <form id="form_track_event" class="ui form">
+          <div class="field">
+            <label>Event Name *</label>
+            <input
+              type="text"
+              id="event_name"
+              placeholder="eg. Clicked on catalog"
+            />
+          </div>
+          <div class="field">
+            <label>Event Attribute</label>
+            <input
+              type="text"
+              id="event_attr"
+              placeholder='eg. {"itemName":"Books"}'
+            />
+          </div>
+          <button class="ui button" type="submit">Track</button>
+        </form>
+      </div>
+      <div class="five wide column">
+        <h2>Show Notification</h2>
+        <form id="form_show_notification" class="ui form">
+          <div class="field">
+            <label>Title *</label>
+            <input
+              type="text"
+              id="notif_title"
+              placeholder="eg. Thanks for subscribing"
+            />
+          </div>
+          <div class="field">
+            <label>Body *</label>
+            <input
+              type="text"
+              id="notif_body"
+              placeholder="eg. This is the body"
+            />
+          </div>
+          <div class="field">
+            <label>Icon</label>
+            <input type="text" id="notif_icon" placeholder="URL for the icon" />
+          </div>
+          <div class="field">
+            <label>Image</label>
+            <input
+              type="text"
+              id="notif_image"
+              placeholder="URL for the image"
+            />
+          </div>
+          <div class="field">
+            <label>Badge</label>
+            <input
+              type="text"
+              id="notif_badge"
+              placeholder="URL for the badge"
+            />
+          </div>
+          <button class="ui button" type="submit">Show</button>
+        </form>
+      </div>
+    </div>
+
+    <div class="ui success  message hidden" style="    position: fixed;
+    top: 100px;
+    width: calc(100% - 80px);
+    left: 40px;
+    box-shadow: 0 0 0 1px rgba(34,36,38,.22) inset, 0 2px 4px 0 rgba(34,36,38,.12), 0 2px 10px 0 rgba(34,36,38,.15)">
+      <i class="close icon"></i>
+      <div class="header" style="text-align: center;">
+        Your user registration was successful.
+      </div>
+    </div>
+
+    <script>
+      $('.ui.success.message .close').on('click', () => {$('.ui.success.message').addClass('hidden')})
+      $('#form_add_attribute').form({
+        onSuccess: function(event, fields) {
+          event.preventDefault();
+          var attributeName = $('#user_attr').val();
+          var value = $('#user_attr_value').val();
+          if (!!value) {
+            try {
+              value = JSON.stringify(value);
+            } catch (e) {}
+          } else {
+            value = null;
+          }
+
+          Moengage.user
+            .addAttribute(attributeName, value)
+            .then(function(result) {
+              if (result) {
+                if(result.error) {
+                  alert(result.message);
+                  return;
+                }
+                $('.ui.success.message .header').text('Attrtibute tracked successfully.')
+                $('.ui.success.message').removeClass('hidden')
+              }
+            });
+        },
+      });
+
+      $('#form_track_event').form({
+        onSuccess: function(event, fields) {
+          event.preventDefault();
+          var eventName = $('#event_name').val();
+          var value = $('#event_attr').val();
+          if (!!value) {
+            try {
+              value = JSON.parse(value);
+            } catch (e) {}
+          } else {
+            value = null;
+          }
+
+          Moengage.event.track(eventName, value).then(function(result) {
+            if (result) {
+              if(result.error) {
+                alert(result.message);
+                return;
+              }
+              $('.ui.success.message .header').text('Event tracked successfully.')
+              $('.ui.success.message').removeClass('hidden')
+            }
+          });
+        },
+      });
+
+      $('#form_show_notification').form({
+        onSuccess: function(event, fields) {
+          event.preventDefault();
+
+          Moengage.showNotification({
+            title: !!$('#notif_title').val() ? $('#notif_title').val() : null,
+            body: !!$('#notif_body').val() ? $('#notif_body').val() : null,
+            icon: !!$('#notif_icon').val() ? $('#notif_icon').val() : null,
+            image: !!$('#notif_image').val() ? $('#notif_image').val() : null,
+            badge: !!$('#notif_badge').val() ? $('#notif_badge').val() : null,
+          });
+        },
+      });
+
+      $('#login').on('click', function() {
+        if (localStorage.loginStatus === 'logout') {
+          const randomDate = new Date().getTime();
+          const email = 'tastytest@moenegage.com';
+          Promise.all([
+            Moengage.add_unique_user_id(),
+            Moengage.add_email(email)
+          ]).then(res => {
+            if(res) {
+              $('.ui.success.message .header').text(`Logged it with email as ${email} and unique ID as ${randomDate}`)
+              $('.ui.success.message').removeClass('hidden')
+            }
+          })
+          localStorage.loginStatus = 'login';
+          disableLoginLogout();
+        }
+      });
+
+      $('#logout').on('click', function() {
+        if (localStorage.loginStatus === 'login') {
+          Moengage.destroy_session().then(function(result) {
+            if (result) {
+              if(result.error) {
+                alert(result.message);
+                return;
+              }
+              $('.ui.success.message .header').text('Successfully logged out.')
+              $('.ui.success.message').removeClass('hidden')
+              localStorage.loginStatus = 'logout';
+              disableLoginLogout();
+            }
+          });
+          
+        }
+      });
+
+      function disableLoginLogout() {
+        if (localStorage.loginStatus === 'logout') {
+          $('#logout').prop('disabled', true);
+          $('#login').prop('disabled', false);
+        } else {
+          $('#login').prop('disabled', true);
+          $('#logout').prop('disabled', false);
+        }
+      }
+
+      $(document).ready(function() {
+        if (!localStorage.loginStatus) {
+          localStorage.loginStatus = 'logout';
+        }
+        disableLoginLogout();
+      });
+
+      $('#showSoftAskButton').on('click', function() {
+        Moengage.call_web_push({
+          soft_ask: true,
+          main_class: 'moe-main-class',
+          allow_class: 'moe-allow-class',
+          block_class: 'moe-block-class',
+        });
+      });
+    </script>
+
+    <div class="moe-main-class" style="display: none">
+      <div class="moe-allow-class" id="subscription-floating-button">
+        <img
+          src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAwMAAAMDCAMAAADJ/DkRAAACQFBMVEUAAADlS03lS03lS03lS03lS03lS03lS03lS03lS03lS03lS03lS03lS03lS03lS03lS03lS03lS03lS03lS03lS03lS03lS03lS03lS03lS03lS03lS03lS03lS03lS03lS03lS03lS03lS03lS03lS03lS03lS03lS03lS03lS03lS03lS03lS03lS03lS03lS03lS03lS03lS03lS03lS03lS03lS03lS03lS03lS03lS03lS03lS03lS03lS03lS03lS03lS03lS03lS03lS03lS03lS03lS03lS03lS03lS03lS03lS03lS03lS03lS03lS03lS03lS03lS03lS03lS03lS03lS03lS03lS03lS03lS03lS03lS03lS03lS03lS03lS03lS03lS03lS03lS03lS03lS03lS03lS03lS03lS03lS03lS03lS03lS03lS03lS03lS03lS03lS03lS03lS03lS03lS03lS03lS03lS03lS03lS03lS03lS03lS03lS03lS03lS03lS03lS03lS03lS03lS03lS03lS03lS03lS03lS03lS03lS03lS03lS03lS03lS03lS03lS03lS03lS03lS03lS03lS03lS03lS03lS03lS03lS03lS03lS03lS03lS03lS03lS03lS03lS03lS03lS03lS03lS03lS03lS03lS03lS03lS03lS03lS03lS03lS03lS03lS03lS03lS03lS03lS03lS03lS03lS03lS00b1kIHAAAAv3RSTlMAAQIDBAUGBwgJCgsMDQ4PEBESExQVFhcYGRobHB0eHyAhIiMkJSYnKCkqKywtLi8wMTIzNDU2Nzg5Ojs8PT4/QEFCQ0RFRkdJSktMTU5PUFFSVFVWV1hZW1xdXl9hYmNkZmdoaWtsbW9wcXN0dXd4eXt8fn+AgoOFhoiJi4yOj5GSlJWXmJqbnZ6goqOlpqiqq62vsLK0tbe5ury+wMHDxcfIyszOz9HT1dfZ2tze4OLk5ujp6+3v8fP19/n7/astjCAAABjdSURBVBgZ7cGJg51lffbx6zkzJ3vCHXaiIhANNgXyogio7LyurUtrtYciiAW1hkUgoi9K2YT6YEVRCRAo4Igh7JwQMckkM9e/9ta2VlmSzPzu+zlz7pzv5yMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAsvf77Pva1u5/cufugDw53Pnn31R97X1/ApJjesnWX32nX1i3TAo56vbMenPehzD9wVk/A0ax/1X4f3r7BtICjVf/6gz6yA9f3BRS04t6+xsMle70wey/WeOjfs0Ko3mlv+vnlGgNphxfuiaQx0J/xm+8XKvcl/6cXV2jJffygF+PghVpy/Rn/py8INevd5//y6iotreZ2L9atjZZWf8b/5d6eUK01v/P/GK7VUpp6wov3xJSWUn/G/+O51UKlPrjf/2vPMVo6/Wcd8WxfS6c/4/+1b6NQpb/1X3rzOC2VZTsds3OZlkp/xn/pc0J9mjv8VvtO1NKY2umonVNaGv0Zv9W2RqhMf7vfbv8GLYXmV477ZaOl0J/x2z06LVQlveJ3OnCqlsAPneNOLYH+jN/p5WOEimya9buZ26iR+7zz/I1Grj/jdzP7QaEaV/oQ5jdrxI6fd5754zRi/RkfwuVCJW7woW3RSPV2OdeunkaqP+ND+oZQg+YeH84FGqWbnO8mjVJ/xofxr40w9qa3+/Au0egc6xLWa3T6Mz6sR6eFMbdql4/kUxqZR13CrzUy/RkfwfMrhbG2/g0f2Rc1Iue4jLM0Iv0ZH9HuJIyxDfu8EP+o0fity5jRaPRnvAB7TxHG1ocOemGu1Sic4VJO1yj0Z7wgBzcJY+rjXrBvagR+5VJ+qRHoz3ihLhTG0he9CDepc+tczjp1rj/jhfu8MIau9aJsU9e+4nK+rK71Z7wY1whj51tepDvVsRddzi51rD/jxblBGDO3eNHuadSlY13SenWqP+PFulEYK99zwIONOvRpl/RJdak/48XbJoyRuxzy742682OXdJ861J9xxA+FcdHc76BHeurMPpe0V93pzzjmXmFM3Oew7T11ZI3LWqOu9GccdY8wFu52hien1I2NLusMdaQ/47i7hDFwl7M8M61OXO6yLlM3+jPOcaew5O50pt/21YUbXNb16kR/xnm+LyyxO5zt+eXqwI9d1n3qQn/GubYJS+q7LuClFSrvEZf1c3WgP+N8NwtL6DoX8eoqFfeUy9qh8vozLuFaYcn8nQsZrlVpz7usnSquP+MyviAskctdzJ5jVNjrLus1ldafcSmXCEviXBf05nEqa+iyhiqsP+NytghLYOO8S9p3gooauqyhypqecUHzZwgjd8IBF/XvfRU1dFlDldV82yUdOF4YsVV7XNL851TY0GUNVdrmvS5oz0phpKZfcEm7jlNpQ5c1VHErdrigXdPCCDU7XNIdPRU3dFlDldd80wU93gij828u6MD56sDQZQ3VhbP2u5wHhJG5xQXtXKcuDF3WUJ1Y+zuXc7MwIp91QT/qqRNDlzVUN3r3uZxPCyOx0eXMXaGODF3WUF35oss5QxiBdftdzPBEdWXosobqzGl7Xcq+tULnpl9yMY/11ZmhyxqqO2t2uZQXp4WONY+6mFsbdWfosobq0NTDLuVXjdCt77mU+UvVpaHLGqpTW13K7UKnrnQpvz9FnRq6rKG6dblLuUzo0MnzLuR3q9StocsaqmMfmHUZ8ycJnVm224U8PKWODV3WUF07drfLGPaFjjSPuZDvqnNDlzVU51b81mU82gjduNmF/K26tvbiWZc1e/EadW3qFy5jq9CJC1zG/Lnq1LJzbh26C8Nbz16mTjX3uoyPCh1Yd8BF7D9VHTrhqufcpecGx6tLt7qI2TVCcc1zLmK4Xl1pTtv6hrv3xndOa9SZa13EbxqhtO+5iJ0r1I1m0w9nPSqzP9zUqCN/4yJuEwo730U8M61OnHzjXo/W3q0nqxsfdxEfFopae8AlPDalDqz9x1e9FF756hp14SMuYXa1UFAz4xIe7qm4ZvMvvXQe2dyovLPmXcCzjVDOt13CA41KW/HVN7y03vjKChW3ac4F3CAUc7pL+FeVtuEBj4Mfb1Bpp8+5gFOFQqaHLuBfVdiZOzwuntikwjbOOd/rU0IZ97uAu1RUc+Euj5Od5zcqatO8890jFPExF3CXSmqu3O1xM7yiUUl/7QIuEApYNet8d6mkj73mcfTqhSppi/PtXynk+5XzPaCCtrzgcbXrHBV0ofM9ImS7wvkeblTMGTMeZ785TeV81vkuFTKtPOBsj/VUyuqfeNw9uErFXO1ssyuEPI8429NTKqR37bzH39w1PZVyk7M9LGS5zNmen1Yh57/hOuw+T6X8yNkuEjKsmHWu3StVxupfuR6PrFIZzS+ca/8KIe6nzrV/vcr4/EHX5ODnVMbUc871EyHsHOeaf7+KWP8frs1/rFcRK3Y712YhqLfbuc5TCc3VrtD8VSri2Flner0nxGx1ri+rhNVPuk5PrlIJG53r20LICc71A5Vw4axrNXuBSviscx0vRDzrTI82yjd1t2t215QK2OZMTwsBn3Sml6aV76RXXbdXTlC+ZrszXSksWn+f8+xbp3yXzrt2cxcpX/8V59k7LSzWbc60SdmabT4a3NooWzrgPLcIi3ScM31V2ZY/5aPDjuXKdp4zHSsszmPO86Cyvef3Plrs2aBsNzrPo8KifNh5nu8p10fnffSYO1e5msedZ4uwCL2hs8yuVa6v+Ojyd8q1fI+zvN4TFu4fnOdc5drmo82tynWq8/y9sGD9WWe5VZl6P/PR56GeMv2Ts8z2hYW60Vl+0yjP9NM+Gj01rUyPOst3hAVa4yyza5Sn/1sfnX7TV57lf3CO+dXCwtzvLOcpz4pdPlrtXK48f+Us9woLcrKz3Kk8q17x0eullcpzo7OcJCzEo87x6pSyrBn6aPb6amVpnneOXwsL8H5nea+yrBz66PbaSmU5wVlOFY7sCee4TlmWv+yj3YvLlOUq53hcOKKNzvFsoxz95330e25aOZqnneN04Uiecob5pBxTz3oSPD2lHOvmnOFJ4Qg2OcdXlaO3w5Nhe6Mcf+8cHxAO71lnmGmUo/WkeEA5mt84w9PCYX3QOY5Tjps8Of5FOY5zjo3C4TzhDNcox+c9ST6jHNc5w3bhMN7jDC80ynCWJ8uHlKF5wRlOEQ7tZ85wmjKceNCT5cDxynC6MzwkHNJxznCXMizb7Ukz7CvDvc6wXjiUux23f5nimsc8eX6tDMtnHfcj4RBWO8MVynCzJ9G/KMPnnGG18O6+47hnlOFjnkwfVVzznOO+JbyrqQOO26C44+Y8mQ6uV9ypjpudEt7NZx13j+KmXvWkemlKcQ867lPCu3nNYXMrFXefJ9ddils977BXhHdxluOuUtxFnmQXKu56x/2V8E5POGx3T2FrD3iSza5W2NSbDtsuvMPxjvu4wppnPNmeahR2ueOOFd7uNoc9r7hvedJ9Q2HNKw67WXibqYMO26ywU40NCjvPYQd6wltd6rAnFdZ72XihUdhzDrtIeKvnHPZehW017BsUdqbDfiO8xckOe1hh7zH+6CSF7XDYicJfusNhJyuqecH4o52Nok532O3CX5iac9QvFPZN4799XWFPOerglPBnn3DYKYo63viTpKgPOuxC4c92OOoRhT1p/Ml2hT3jqMeE/7XWYe9R1EXGn52vqA85bLXwJwNHPaGo6T8Yf7ZnSlG/ddQ/CH/yuqPOVNTtxl+6UVHnOepV4X+8z1HPK+ok462OU1Cz21EbhP/2PUddqKgnjbd6TFGfc9Stwn9pZh30RqOgLcbbbVbQ1KyD9jXCH21y1BcU1LxsvN0LjYL+2VEbhT+600FzfQV92ninyxW00lF3CP+pd8BB2xQ0tdd4p9/3FPSgg2YbQdrsqOMV9A3j3VytoNMctUmQ7nbQDgUtnzPezcFlCnrBQXcK6h100BYFbTXe3Q0KusJBB3rCJge92Shm+bzx7uaWKWbqgIM2Crc76DoFbTUO5ZsKus1Btwh/cNA6xSyfNw5lbpliTnbQ7zXxTnHQEwraahzatxS0y0EnadJ93UHnK2b5vHFoc8sU8xkHXa1J95JjZnuK+ZpxOAPFLHPQLk24dQ66TTG9fcbh/KGnmB87aI0m2ycd9D7FXGkc3iWK2eygyzXZfuaYNxT0inF4LyqmmXXMQ5povXnHXKeYs4wj+ZBitjlmrtEkO81BxyrmKeNIHlfMqQ46VZPsG455XjEnGEd2rGL2OOZaTbJdjvmyYm4zjuxGxdzgmJ2aYCsdlBQyddA4stmeQjY4aIUm10cc85JiLjUW4uOKedMxH9bk2uaYqxXznLEQzyrmZsfcqsn1umOOV8jJxsKcoJDTHPOqJtYqxwwVs81YmO8qpNnvmJWaVB92zLcV0jtgLMz+RiE/cMwWTarbHHO6Qs42FmqzQs5xzM2aVK85ZK6nkJ8YC/VjhfQd87Im1ErH/EQhfWPB5qcV8rhjlmsybXbMRQq5xFi4jyvk8445U5PpOsesUsgOY+G2K2S9Y67RZNrhkBcVstJYjBUK2eOQ7ZpIzbxDvq2Qy43FuFghdzhkrtEkOsExZyrkl8Zi/Fwh5znmOE2iyx0zrYi+sTjTiljpmEs0if6fQ55RyEeMxfk/CnnFId/XJHrVIVcr5MfG4tyrkJsc8pIm0LRjTlNEb85YnIM9RZzlmClNnpMdM62IM4zFOk0RKxxzkibPZQ75nUKuNxbrOoUMHXKxJs9tDvmOQnYZi7VTIT9wyC2aPDMO2aKIFcbiLVfERQ55RhOnccwqRXzUWLxzFbHeMY0mzXqH/F4hPzQW7/sKOeCQpEmzxSEPKGSvsXhvKuQRh5ytSTNwyJcUcYwRsVYRX3PIVzRp7nfI6Yr4mBFxgSI2O+QeTZqXHbJMEXcYEbcpYrVDXtSE6TnkDYW8ZkS8rJD9Dmk0WZJD7lXEciNmmSIedsgxmix/7ZAvKWKzEXOmIq52yGZNlr9zyJmK+Gcj5uuK2OKQL2qyfM8haxTxuBHzqCLWO+R2TZbHHTHfKGLOiDmoiJ5Dtmuy7HPEM4pYa0StVsQLjtiriTLtkNsUcbYRtVkRP3LIlCbJeod8ShFfM6KuUsQXHHKMJsmZDvmAIh42on6qiM0O+aAmyacdsk4R+42ovYo41iH/V5Pk2w7pKWC5EbdcAVMO+aYmyQOOeE0R7zHiNijiD464T5NkxhEPKeITRtyFiviVI57RJJl1xPWKuN6Iu04RNzlivyZIzyGXK+KnRlyriM86pKfJsdohmxSx24h7XRFnOWSVJscGhxyrgCkjR08BJzrkFE2OLQ7pKyAZOY5RwAqHnKPJ8RlHzCtio5HjDAU0DvmUJse1jtiliIuNHJ9QxGuO+JomxzZHPKSIq40cVyniF464TZPjIUfcqogfGjl+oIjvO+InmhzPOmKgiCeMHNsVcY0jntbkeNMRlyriTSPHHkV80hF7NDkcslkBPSNPo4BzHKKJMe2QkxWwwsizXAHvdci0JsUqh6xWwHojT1LAOoes1KQ41iHTCjjVyPNeBfQdsl6TYoNDGgVsMfKcpYDGIRs0KTY54oAirjDyXKaIOUd8QJPiw454WRH/aOT5iiJedcS5mhSXO2KHIm4y8mxVxFOOuFST4kuO+Iki7jXy3K2IhxzxRU2K6xxxhyJ+buT5mSJ+4Iiva2I0EQp50sjzhEKaCKEDu4w8O4W67THy7BbqNm/kOShUrTFyCVXrGbl6Qs2mjVzTQs2WGbn6Qs2WG7mWCTVbYeRaIdRslZFrpVCz1Uau1ULN1hq51go1O8bIdYxQs2TkSkLNkpErCTVLRq4k1CwZuZJQs2TkSkLNkpErCTVLRq4k1CwZuZJQs2TkSkLNkpErCTVLRq4k1CwZuZJQs2TkSkLNkpErCTVLRq4k1CwZuZJQs2TkSkLNkpErCTVLRq4k1CwZuZJQs2TkSkLNkpErCTVLRq4k1CwZuZJQs2TkSkLNkpErCTVLRq4k1CwZuZJQs2TkSkLNkpErCTVLRq4k1CwZuZJQs2TkSkLNkpErCTVLRq4k1CwZuZJQs2TkSkLNkpErCTVLRq4k1CwZuZJQs2TkSkLNkpErCTVLRq4k1CwZuZJQs2TkSkLNkpErCTVLRq4k1CwZuZJQs2TkSkLNkpErCTVLRq4k1CwZuZJQs2TkSkLNkpErCTVLRq4k1CwZuZJQs2TkSkLNkpErCTVLRq4k1CwZuZJQs2TkSkLNkpErCTVLRq4k1CwZuZJQs2TkSkLNkpErCTVLRq4k1CwZuZJQs2TkSkLNkpErCTVLRq4k1CwZuZJQs2TkSkLNkpErCTVLRq4k1CwZuZJQs2TkSkLNkpErCTVLRq4k1CwZuZJQs2TkSkLNkpErCTVLRq4k1CwZuZJQs2TkSkLNkpErCTVLRq4k1CwZuZJQs2TkSkLNkpErCTVLRq4k1CwZuZJQs2TkSkLNkpErCTVLRq4k1CwZuZJQs2TkSkLNkpErCTVLRq4k1CwZuZJQs2TkSkLNkpErCTVLRq4k1CwZuZJQs2TkSkLNkpErCTVLRq4k1CwZuZJQs2TkSkLNkpErCTVLRq4k1CwZuZJQs2TkSkLNkpErCTVLRq4k1CwZuZJQs2TkSkLNkpErCTVLRq4k1CwZuZJQs2TkSkLNkpErCTVLRq4k1CwZuZJQs2TkSkLNkpErCTVLRq4k1CwZuZJQs2TkSkLNkpErCTVLRq4k1CwZuZJQs2TkSkLN1hu51gsVa1ojV9sI1WpaI1/bCJVqWqOEthGq1LRGGW0jVKhpjVLaRqhO0xrltI1QmaY1SmoboSpNa5TVNkJFmtYorW2EajStUV7bCJVoWqMLbSNUoWmNbrSNUIGmNbrSNsLYa1qjO20jjLmmNbrUNsJYa1qjW20jjLGmNbrWNsLYalqje20jjKmmNUahbYSx1LTGaLSNMIaa1hiVthHGTtMao9M2wphpWmOU2kYYK01rjFbbCGOkaY1RaxthbDStMXptI4yJpjWWQtsIY6FpjaXRNsIYaFpjqbSNsOSa1lg6bSMssaY1llLbCEuqaY2l1TbCEmpaY6m1jbBkmtZYem0jLJGmNcZB2whLommN8dA2whJoWmNctI0wck1rjI+2EUasaY1x0jbCSDWtMV7aRhihpjXGTdsII9O0xvhpG2FEmtYYR20jjETTGuOpbYQRaFpjXLWN0LmmNcZX2wgda1pjnLWN0KmmNcZb2wgdalpj3LWN0JmmNcZf2wgdaVqjBm0jdKJpjTq0jdCBpjVq0TZCcU1r1KNthNK+ZNTkS0JpA6MmA6G0gVGTgVDawKjJQChtYNRkIJQ2MGoyEEobGDUZCKUNjJoMhNIGRk0GQmkDoyYDobSBUZOBUNrAqMlAKG1g1GQglDYwajIQShsYNRkIpQ2MmgyE0gZGTQZCaQOjJgOhtIFRk4FQ2sCoyUAobWDUZCCUNjBqMhBKGxg1GQilDYyaDITSBkZNBkJpA6MmA6G0C1rU5AIBAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAANXvf5pFZJ2AM/dwj81kBY+h+j8wlAsbQ9z0y5wkYQ1s9MpsFjKFrPDJnCBhDV3hkThAwhs7wyCwXMIbWeFTmBYyjxqPyOwFj6TWPyP0CxtKPPCJfEzCWPuEROVPAWFrnEVkmYDz93iPxsoAxdadH4jYBY2qzR+I8AWOq2e9RmBYwrm7xCDwkYGyd4hH4sIDx9ZI7Nz8lYHx9wp27W8AYa4bu2okCxtmV7tivBYy1Zo+7tVHAeLvMnfqtgHH3lLu0ScC4O84dagWMv2+5M3OrBYy/3ivuyj8JqMEJ8+7GC42AKnzKnZg7VkAl7nUXrhRQi94ul3efgHqs3O3Sdk0JqEja67J2rxRQlVMOuqR9SUBlPjjvcubeI6A6ZxxwKXNnCqjQiX9wGfveK6BKa19zCW+sF1CpFc8634urBFSr+a5z/du0gJqdO+sc858TULnVTzvupRME1O/KfQ66oSfgaND/gSMeWSfgaLHh116sl84RcDQ56UEvxtNnCzjaHHP7AS/QT08VcDTqnf3gvI/o8cuWCThqTZ+37TUf2t77r1wp4Gi34uxvPTz02725/Zbz1wqYGL01p537iU/9/TXfvObLn7n4I2es6wkAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgHHw/wHU8D0i4N3pEQAAAABJRU5ErkJggg=="
+          alt=""
+        />
+        <div id="tooltip">Subscribe to notifications</div>
+      </div>
+    </div>
+
+    
+    <script type="text/javascript">
+        !function(e,n,i,t,a,r,o,d){var s=e[a]=e[a]||[];if(s.invoked=0,s.initialised>0||s.invoked>0)return console.error("MoEngage Web SDK initialised multiple times. Please integrate the Web SDK only once!"),!1;e.moengage_object=a;var l={},g=function n(i){return function(){for(var n=arguments.length,t=Array(n),a=0;a<n;a++)t[a]=arguments[a];(e.moengage_q=e.moengage_q||[]).push({f:i,a:t})}},u=["track_event","add_user_attribute","add_first_name","add_last_name","add_email","add_mobile","add_user_name","add_gender","add_birthday","destroy_session","add_unique_user_id","moe_events","call_web_push","track","location_type_attribute"],m={onsite:["getData","registerCallback"]};for(var c in u)l[u[c]]=g(u[c]);for(var v in m)for(var f in m[v])null==l[v]&&(l[v]={}),l[v][m[v][f]]=g(v+"."+m[v][f]);r=n.createElement(i),o=n.getElementsByTagName("head")[0],r.async=1,r.src=t,o.appendChild(r),e.moe=e.moe||function(){return(s.invoked=s.invoked+1,s.invoked>1)?(console.error("MoEngage Web SDK initialised multiple times. Please integrate the Web SDK only once!"),!1):(d=arguments.length<=0?void 0:arguments[0],l)},r.addEventListener("load",function(){if(d)return e[a]=e.moe(d),e[a].initialised=e[a].initialised+1||1,!0}),r.addEventListener("error",function(){return console.error("Moengage Web SDK loading failed."),!1})}(window,document,"script","js/moe_webSdk.min.latest.js","Moengage");
+
+
+      Moengage = moe({
+        app_id: '3RADPYNEBZ2MCOJ43EEW5FWV', //wpush
+        debug_logs: 0,
+        cards: {
+          enable:true,
+          placeholder: '#card' 
+        }
+      });
+    </script>
+    <script>
+      setTimeout(function() {
+        $('#branch').text(Moengage.getBranch());
+      }, 2000);
+    </script>
+  </body>
 </html>

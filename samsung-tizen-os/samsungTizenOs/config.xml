@@ -1,10 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<widget xmlns:tizen="http://tizen.org/ns/widgets" xmlns="http://www.w3.org/ns/widgets" id="http://yourdomain/samsungTizenOs" version="1.0.0" viewmodes="maximized">
-    <tizen:application id="bLXmBEo2Gw.samsungTizenOs" package="bLXmBEo2Gw" required_version="2.1"/>
+<widget xmlns:tizen="http://tizen.org/ns/widgets" xmlns="http://www.w3.org/ns/widgets" id="https://www.moengage.com/MoengageWebSDKTizenSample" version="1.0.0" viewmodes="maximized">
+    <tizen:application id="bLXmBEo2Gw.MoengageWebSDKTizenSample" package="bLXmBEo2Gw" required_version="2.1"/>
     <content src="index.html"/>
     <feature name="http://tizen.org/feature/screen.size.normal.1080.1920"/>
     <icon src="moengage.png"/>
-    <name>samsungTizenOs</name>
+    <name>MoengageWebSDKTizenSample</name>
     <tizen:profile name="tv-samsung"/>
     <tizen:setting screen-orientation="landscape" context-menu="enable" background-support="disable" encryption="disable" install-location="auto" hwkey-event="enable"/>
+    <tizen:privilege name="http://tizen.org/privilege/internet"/>
+    <tizen:privilege name='http://tizen.org/privilege/tv.inputdevice' />
+    <access origin="*" subdomains="true" />
+
 </widget>
