@@ -7,7 +7,4 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'angular-sample';
-  trackMoeEvent(): void {
-    (window as any).Moengage.track_event('Sample', {integration: 'Angular'});
-  }
 }
