@@ -25,3 +25,14 @@ Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To u
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+
+## WebSDK Code
+
+Add you webSDK code inside the src/index.html file
+1. Add Script File and inside that add webSDK code
+
+## Service Worker for WebSDK
+
+To add the Service Worker File for Web Push
+1. add serviceworker.js file inside src
+2. open angular.json and add `src/serviceworker.js` this code under `projects -> your-project-name -> architect -> build -> options -> assets`
