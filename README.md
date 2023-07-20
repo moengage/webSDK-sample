@@ -28,3 +28,5 @@ Sample WebSDK integration
 [Samsung Tizen OS](samsung-tizen-os/samsungTizenOs/)
 
 [PWA](pwa/)
+
+[Web Personalization V-2](web-personalization-v2.html)
