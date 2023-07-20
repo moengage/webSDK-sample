@@ -1,0 +1,25 @@
+{
+  "name": "node-module-app",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "webpack-dev-server --mode development --open",
+    "start": "webpack -p && node server.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@moengage/web-sdk": "^1.0.3",
+    "css-loader": "^1.0.0",
+    "express": "^4.16.3",
+    "express-favicon": "^2.0.1",
+    "path": "^0.12.7",
+    "script-loader": "^0.7.2",
+    "style-loader": "^0.22.1",
+    "webpack": "^4.16.5",
+    "webpack-cli": "^3.1.0",
+    "webpack-dev-server": "^3.1.5"
+  }
+}
