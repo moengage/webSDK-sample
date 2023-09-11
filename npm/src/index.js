@@ -16,7 +16,7 @@ function initMoe() {
   // import Moengage from 'moengage';
   console.log(moengage)
   // var a = moengage;
-  moengage.initialize({app_id: 'PMUIV063ELNBKN1BG8XDQTLZ'});
+  moengage.initialize({app_id: 'XXXXXXXXXXXXXXXXXXXXXXXX'});
   moengage.setDebugLevel(2) 
 }
 
