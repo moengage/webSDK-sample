@@ -13,6 +13,9 @@ import 'cards/cards_home.dart';
 import 'second_page.dart';
 import 'utils.dart';
 import 'package:flutter/foundation.dart';
+import 'dart:convert';
+import 'dart:core';
+import 'dart:html';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -105,6 +108,17 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
     debugPrint('$tag Permission Result: $data');
   }
 
+  Future<void> appendMoengageScript() {
+    Completer<void> completer = Completer<void>();
+    ScriptElement script = ScriptElement();
+    script.src = 'moengage_integration.js';
+    script.onLoad.listen((_) {
+      completer.complete();
+    });
+    document.body?.append(script);
+    return completer.future;
+  }
+
   @override
   void initState() {
     super.initState();
@@ -119,7 +133,17 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
     _moengagePlugin.setPushTokenCallbackHandler(_onPushTokenGenerated);
     _moengagePlugin.setPermissionCallbackHandler(_permissionCallbackHandler);
     _moengagePlugin.configureLogs(LogLevel.VERBOSE);
-    _moengagePlugin.initialise();
+    // added event listner for SDK LifeCycle
+    window.addEventListener("MOE_LIFECYCLE",(event) {
+      var detail = (event as CustomEvent).detail;
+      String name = detail['name'];
+      if(name == "SDK_INITIALIZED"){
+        _moengagePlugin.initialise();
+      }
+    });
+    appendMoengageScript().then((res) {
+      debugPrint('$tag sdkScript Added');
+    });
     debugPrint('initState() : end ');
   }
 
