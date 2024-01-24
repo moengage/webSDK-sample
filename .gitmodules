@@ -1,0 +1,3 @@
+[submodule "Flutter-SDK"]
+	path = Flutter-SDK
+	url = https://github.com/moengage/Flutter-SDK.git
