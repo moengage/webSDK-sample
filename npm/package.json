@@ -16,7 +16,7 @@
     "webpack-dev-server": "^4.13.2"
   },
   "dependencies": {
-    "@moengage/web-sdk": "^1.0.3",
+    "@moengage/web-sdk": "^1.0.7",
     "lodash": "^4.17.21"
   }
 }
