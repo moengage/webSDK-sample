@@ -28,3 +28,5 @@ Sample WebSDK integration
 [PWA](pwa/)
 
 [npm](npm/)
+
+[Chrome Extension](chrome-extension/)
