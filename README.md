@@ -30,3 +30,5 @@ Sample WebSDK integration
 [npm](npm/)
 
 [Chrome Extension](chrome-extension/)
+
+[Magento](magento/)
