@@ -113,81 +113,11 @@ var MoengageSW = (function(self) {
     if (event.data) {
       if (event.data.app_id) {
         await setStoreData('reportParams', event);
-        if (event.data?.environment) {
+        if (event.data.environment) {
           baseDomain.set(event.data.environment);
         }
-      } else if (event.data.cartToken) {
-        //track cart cookie as user attribute
-        event.waitUntil(
-          getStoreData('reportParams')
-            .then(function(res) {
-              if (res.data.environment) {
-                baseDomain.set(res.data.environment);
-              }
-              return;
-            })
-            .then(function() {
-              return trackCartToken(event.data);
-            })
-        );
       }
     }
-  }
-
-  function trackCartToken(data) {
-    return new Promise((resolve, reject) => {
-      //check upto 5 seconds if cart cookie exists
-      let maxSecondsToCheck = 5;
-      const cartTokenInterval = setInterval(async () => {
-        try {
-          const cookie = await cookieStore.get('cart');
-
-          if (cookie && cookie.value) {
-            //cookie found, clearInterval and track the cookie as cart_token
-            clearInterval(cartTokenInterval);
-            const extraKeys = {
-              h: '',
-              meta: {
-                bid: uuidV4()
-              },
-              url: data.url
-            };
-            const idbPayload = { cart_token: cookie.value }; //setting this key to check if re-tracking cart_token attribute is eligible on next page
-            const userId = data.moe_user_id;
-            if (userId) {
-              extraKeys['identifiers'] = {
-                moe_user_id: userId
-              };
-
-              //setting this key to check if re-tracking cart_token attribute is eligible on next page
-              idbPayload['USER_ATTRIBUTE_UNIQUE_ID'] = userId;
-            }
-            trackEvent(
-              'EVENT_ACTION_USER_ATTRIBUTE',
-              {
-                cart_token: cookie.value
-              },
-              undefined,
-              extraKeys
-            );
-            await setStoreData('shopify_cookie_attr', idbPayload);
-            resolve();
-          }
-
-          maxSecondsToCheck--;
-          if (maxSecondsToCheck <= 0) {
-            //5 second elapsed, clearInterval
-            clearInterval(cartTokenInterval);
-            resolve();
-          }
-        } catch (error) {
-          //error occurred while trying to get the cookie
-          clearInterval(cartTokenInterval);
-          console.error(`Unable to fetch the cart cookie: ${error}`);
-          resolve();
-        }
-      }, 1000);
-    });
   }
 
   async function onPush(event) {
