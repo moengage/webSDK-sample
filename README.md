@@ -32,3 +32,5 @@ Sample WebSDK integration
 [Chrome Extension](chrome-extension/)
 
 [Magento](magento/)
+
+[Web Personalization V-2](web-personalization-v2.html)
