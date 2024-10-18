@@ -27,6 +27,8 @@ Sample WebSDK integration
 
 [PWA](pwa/)
 
+[Cards](cards.html)
+
 [npm](npm/)
 
 [Chrome Extension](chrome-extension/)
