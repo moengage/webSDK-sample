@@ -5,8 +5,6 @@ Sample WebSDK integration
 
 [Integration with Debugging enabled](debug.html)
 
-[Integration with EU Region Redirection](eu-cluster.html)
-
 [Self Handled Opt-in Sample](self-handled-push.html)
 
 [Custom Service Worker](custom-serviceworker.html)
@@ -30,3 +28,9 @@ Sample WebSDK integration
 [PWA](pwa/)
 
 [Cards](cards.html)
+
+[npm](npm/)
+
+[Chrome Extension](chrome-extension/)
+
+[Magento](magento/)
