@@ -5,8 +5,6 @@ Sample WebSDK integration
 
 [Integration with Debugging enabled](debug.html)
 
-[Integration with EU Region Redirection](eu-cluster.html)
-
 [Self Handled Opt-in Sample](self-handled-push.html)
 
 [Custom Service Worker](custom-serviceworker.html)
@@ -28,3 +26,9 @@ Sample WebSDK integration
 [Samsung Tizen OS](samsung-tizen-os/samsungTizenOs/)
 
 [PWA](pwa/)
+
+[npm](npm/)
+
+[Chrome Extension](chrome-extension/)
+
+[Magento](magento/)
