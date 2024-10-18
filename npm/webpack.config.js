@@ -5,12 +5,12 @@ module.exports = {
   mode: 'development',
   output: {
     filename: 'main.js',
-    path: path.resolve(__dirname, 'dist'),
+    path: path.resolve(__dirname, 'build'),
   },
   devServer: {
     port: 4111,
     static: {
-      directory: path.join(__dirname, 'dist'),
+      directory: path.join(__dirname, 'build'),
       publicPath: '/',
     },
     // contentBase: path.resolve(__dirname, 'build'),
