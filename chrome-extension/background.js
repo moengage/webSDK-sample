@@ -26,17 +26,41 @@ var MoengageSW = (function(self) {
   };
 
   async function setStoreData(key, value) {
-    await chrome.storage.local.set({ [key]: value });
-  }
+      return new Promise((resolve, reject) => {
+        chrome.storage.local.set({ [key]: value }, () => {
+          if (chrome.runtime.lastError) {
+            reject(new Error(chrome.runtime.lastError));
+          } else {
+            resolve();
+          }
+        });
+      });
+    }
 
   // To get items with async/await
+
   async function getStoreData(key) {
-    const data = (await chrome.storage.local.get([key])) || {};
-    return data[key];
+      return new Promise((resolve, reject) => {
+        chrome.storage.local.get([key], (result) => {
+          if (chrome.runtime.lastError) {
+            reject(new Error(chrome.runtime.lastError));
+          } else {
+            resolve(result[key]);
+          }
+        });
+      });
   }
 
   async function removeStoreData(key) {
-    await chrome.storage.local.remove(key);
+      return new Promise((resolve, reject) => {
+        chrome.storage.local.remove(key, () => {
+          if (chrome.runtime.lastError) {
+            reject(new Error(chrome.runtime.lastError));
+          } else {
+            resolve();
+          }
+        });
+      });
   }
 
   async function getCampaignData(key) {
@@ -51,7 +75,7 @@ var MoengageSW = (function(self) {
     const data = (await getStoreData('moe_backup')) || {};
     if (data) {
       data[key] = value;
-      await chrome.storage.local.set({ moe_backup: data });
+      await setStoreData('moe_backup', data);
     }
   }
 
@@ -59,7 +83,7 @@ var MoengageSW = (function(self) {
     const data = (await getStoreData('moe_backup')) || {};
     if (data) {
       delete data[key];
-      await chrome.storage.local.set({ moe_backup: data });
+      await setStoreData('moe_backup', data);
       return true;
     }
     return false;
@@ -557,28 +581,24 @@ var MoengageSW = (function(self) {
   /**
    * Reterives API request metadata from offline db
    */
-  function getRequestMetaData() {
-    return getStoreData('requestMetaData').then(function(requestMetaData) {
+  async function getRequestMetaData() {
+    const requestMetaData = await getStoreData('requestMetaData');
       return requestMetaData;
-    });
   }
 
   /**
    * Creates Report Adf request object
    */
-  function requestPayload() {
-    return Promise.all([getRequestMetaData(), mergeMOEReports()]).then(function(
-      moeRequestValues
-    ) {
+  async function requestPayload() {
+    const moeRequestValues = await Promise.all([getRequestMetaData(), mergeMOEReports()]);
       if (moeRequestValues[0] && moeRequestValues[1]) {
-        var requestData = moeRequestValues[0];
-        var mergedReports = flattenArray(moeRequestValues[1]);
-        requestData.viewsInfo = mergedReports;
-        requestData.viewsCount = mergedReports.length;
-        return requestData;
+          var requestData = moeRequestValues[0];
+          var mergedReports = flattenArray(moeRequestValues[1]);
+          requestData.viewsInfo = mergedReports;
+          requestData.viewsCount = mergedReports.length;
+          return requestData;
       }
       return;
-    });
   }
 
   /**
