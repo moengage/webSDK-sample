@@ -2,6 +2,11 @@
  *  moengage-web-sdk-serviceworker v{{ VERSION }}
  * (c) MoEngage Inc. http://moengage.com
  */
+
+// Download the service worker code from https://cdn.moengage.com/webpush/beta/serviceworker_chrome_ext_cdn.js
+// Add that code in your background.js file
+// Use that code to register the service worker in your chrome extension
+
 var MoengageSW = (function(self) {
   var baseDomain = {
     env: 'sdk-01.moengage.com',
