@@ -107,7 +107,12 @@ var MoengageSW = (function(self) {
   // Iterates all data in a specified chrome.storage area
   function iterateData(data, callback) {
     return new Promise((resolve, reject) => {
-      resolve(Object.keys(data).map(key => callback(key, data[key])));
+      for (let key of Object.keys(data)) {
+          let result = callback(key, data[key]);
+          if (result !== undefined) {
+              resolve(result) ; // Return the response from the callback
+          }
+      }
     });
   }
 
@@ -116,7 +121,6 @@ var MoengageSW = (function(self) {
   const MAX_DAYS_CAMPAIGN_SAVE = 28;
 
   var init = async function() {
-    console.log('Init Function call');
     await resetStorageData();
     self.addEventListener('install', onInstall);
     self.addEventListener('activate', onActivate);
@@ -129,12 +133,10 @@ var MoengageSW = (function(self) {
   };
 
   function onInstall(event) {
-    console.log('Service Worker onInstall');
     event.waitUntil(self.skipWaiting());
   }
 
   function onActivate(event) {
-    console.log('Service Worker OnActive');
     event.waitUntil(self.clients.claim());
   }
 
@@ -150,7 +152,6 @@ var MoengageSW = (function(self) {
   }
 
   async function onPush(event) {
-    console.log('Service Worker OnPush');
     if (!(self.Notification && self.Notification.permission === 'granted')) {
       return;
     }
@@ -535,7 +536,6 @@ var MoengageSW = (function(self) {
    * Background sync supported browsers will replay in periodic intervals till promise is resolved
    */
   function onSync(event) {
-    console.log('Service Worker OnSync');
     if (event.tag === 'moe_offline_data_sync') {
       event.waitUntil(
         openDatabaseAndReplayMOERequests().then(function(message) {
