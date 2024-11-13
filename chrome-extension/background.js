@@ -135,7 +135,7 @@ var MoengageSW = (function (self) {
     if (event.data) {
       if (event.data.app_id) {
         await setStoreData('reportParams', event);
-        if (event.data && event.data.environment) {
+        if (event.data.environment) {
           baseDomain.set(event.data.environment);
         }
       }
@@ -154,7 +154,7 @@ var MoengageSW = (function (self) {
       .then(function (res) {
         if (res && res.data) {
           idbData = res.data;
-          if (res.data && res.data.environment) {
+          if (res.data.environment) {
             baseDomain.set(res.data.environment);
           }
         }
@@ -365,7 +365,7 @@ var MoengageSW = (function (self) {
     event.waitUntil(
       getStoreData('reportParams')
       .then(function (res) {
-        if (res.data && res.data.environment) {
+        if (res && res.data && res.data.environment) {
           baseDomain.set(res.data.environment);
         }
         return;
@@ -417,7 +417,7 @@ var MoengageSW = (function (self) {
 
   function trackEvent(eventName, attrs, flag, extraKeys = {}) {
     getStoreData('reportParams').then(function (res) {
-      if (!res) {
+      if (!res || !res.data) {
         return;
       }
       var data = res.data;
