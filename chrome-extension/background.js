@@ -117,7 +117,7 @@ var MoengageSW = (function (self) {
     await resetStorageData();
     self.addEventListener('install', onInstall);
     self.addEventListener('activate', onActivate);
-    chrome.runtime.onMessage.addListener(onMessage);
+    self.addEventListener('message', onMessage);
     self.addEventListener('push', onPush);
     self.addEventListener('notificationclick', onNotificationClick);
     self.addEventListener('notificationclose', onNotificationClose);
