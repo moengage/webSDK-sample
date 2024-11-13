@@ -35,7 +35,7 @@ var MoengageSW = (function (self) {
         if (chrome.runtime.lastError) {
           reject(new Error(chrome.runtime.lastError));
         } else {
-          resolve();
+          resolve(value);
         }
       });
     });
@@ -134,10 +134,12 @@ var MoengageSW = (function (self) {
   async function onMessage(event) {
     if (event.data) {
       if (event.data.app_id) {
-        await setStoreData('reportParams', event);
-        if (event.data.environment) {
-          baseDomain.set(event.data.environment);
-        }
+        event.waitUntil(setStoreData('reportParams', event).then((res => {
+          if (res.data.environment) {
+            baseDomain.set(event.data.environment);
+          }
+        })));
+
       }
     }
   }
