@@ -3,69 +3,68 @@
  * (c) MoEngage Inc. http://moengage.com
  */
 
-// Download the service worker code from https://cdn.moengage.com/webpush/beta/serviceworker_chrome_ext_cdn.js
+// Download the service worker code from https://cdn.moengage.com/release/{Your_DC}/versions/2/serviceworker_chrome_ext_cdn.js
 // Add that code in your background.js file
 // Use that code to register the service worker in your chrome extension
 
-var MoengageSW = (function(self) {
+var MoengageSW = (function (self) {
   var baseDomain = {
     env: 'sdk-01.moengage.com',
-    get: function() {
+    get: function () {
       return 'https://' + baseDomain.env;
     },
-    set: function(env) {
+    set: function (env) {
       baseDomain.env = env;
     }
   };
   var URLS = {
-    addReport: function() {
+    addReport: function () {
       return baseDomain.get() + '/v2/report/add';
     },
-    batch: function() {
+    batch: function () {
       return baseDomain.get() + '/v2/sdk/report/';
     },
     FCM_END_POINT: 'https://fcm.googleapis.com/fcm/send/',
-    MOZILLA_END_POINT: 'https://updates.push.services.mozilla.com/wpush/v2/',
-    EDGE_END_POINT: 'https://wns2-pn1p.notify.windows.com/w/?token=',
-    SAFARI_END_POINT: 'https://web.push.apple.com/'
   };
 
   async function setStoreData(key, value) {
-      return new Promise((resolve, reject) => {
-        chrome.storage.local.set({ [key]: value }, () => {
-          if (chrome.runtime.lastError) {
-            reject(new Error(chrome.runtime.lastError));
-          } else {
-            resolve();
-          }
-        });
+    return new Promise((resolve, reject) => {
+      chrome.storage.local.set({
+        [key]: value
+      }, () => {
+        if (chrome.runtime.lastError) {
+          reject(new Error(chrome.runtime.lastError));
+        } else {
+          resolve();
+        }
       });
-    }
+    });
+  }
 
   // To get items with async/await
 
   async function getStoreData(key) {
-      return new Promise((resolve, reject) => {
-        chrome.storage.local.get([key], (result) => {
-          if (chrome.runtime.lastError) {
-            reject(new Error(chrome.runtime.lastError));
-          } else {
-            resolve(result[key]);
-          }
-        });
+    return new Promise((resolve, reject) => {
+      chrome.storage.local.get([key], (result) => {
+        if (chrome.runtime.lastError) {
+          reject(new Error(chrome.runtime.lastError));
+        } else {
+          resolve(result[key]);
+        }
       });
+    });
   }
 
   async function removeStoreData(key) {
-      return new Promise((resolve, reject) => {
-        chrome.storage.local.remove(key, () => {
-          if (chrome.runtime.lastError) {
-            reject(new Error(chrome.runtime.lastError));
-          } else {
-            resolve();
-          }
-        });
+    return new Promise((resolve, reject) => {
+      chrome.storage.local.remove(key, () => {
+        if (chrome.runtime.lastError) {
+          reject(new Error(chrome.runtime.lastError));
+        } else {
+          resolve();
+        }
       });
+    });
   }
 
   async function getCampaignData(key) {
@@ -94,24 +93,18 @@ var MoengageSW = (function(self) {
     return false;
   }
 
-  async function getOfflineStoreData(key) {
-    const data = (await getStoreData('offline_data')) || {};
-    return data[key];
-  }
-
   async function resetStorageData(params) {
     await removeStoreData('moe_backup');
     await removeStoreData('reportParams');
-    await removeStoreData('offline_data');
   }
   // Iterates all data in a specified chrome.storage area
   function iterateData(data, callback) {
     return new Promise((resolve, reject) => {
       for (let key of Object.keys(data)) {
-          let result = callback(key, data[key]);
-          if (result !== undefined) {
-              resolve(result) ; // Return the response from the callback
-          }
+        let result = callback(key, data[key]);
+        if (result !== undefined) {
+          resolve(result); // Return the response from the callback
+        }
       }
     });
   }
@@ -120,7 +113,7 @@ var MoengageSW = (function(self) {
   // FCM follow 28 days.
   const MAX_DAYS_CAMPAIGN_SAVE = 28;
 
-  var init = async function() {
+  var init = async function () {
     await resetStorageData();
     self.addEventListener('install', onInstall);
     self.addEventListener('activate', onActivate);
@@ -128,8 +121,6 @@ var MoengageSW = (function(self) {
     self.addEventListener('push', onPush);
     self.addEventListener('notificationclick', onNotificationClick);
     self.addEventListener('notificationclose', onNotificationClose);
-    self.addEventListener('sync', onSync);
-    initOfflineSync();
   };
 
   function onInstall(event) {
@@ -144,7 +135,7 @@ var MoengageSW = (function(self) {
     if (event.data) {
       if (event.data.app_id) {
         await setStoreData('reportParams', event);
-        if (event.data.environment) {
+        if (event.data && event.data.environment) {
           baseDomain.set(event.data.environment);
         }
       }
@@ -160,119 +151,116 @@ var MoengageSW = (function(self) {
     var idbData = {};
     event.waitUntil(
       getStoreData('reportParams')
-        .then(function(res) {
-          if (res && res.data) {
-            idbData = res.data;
-            if (res.data.environment) {
-              baseDomain.set(res.data.environment);
-            }
+      .then(function (res) {
+        if (res && res.data) {
+          idbData = res.data;
+          if (res.data && res.data.environment) {
+            baseDomain.set(res.data.environment);
           }
-          return;
-        })
-        .then(function() {
-          try {
-            var jsonPayload = event.data.json();
-            if (jsonPayload) {
-              return jsonPayload;
-            }
-          } catch (err) {
-            console.error(
-              'payload not received or has some errors in Moengage Push'
-            );
+        }
+        return;
+      })
+      .then(function () {
+        try {
+          var jsonPayload = event.data.json();
+          if (jsonPayload) {
+            return jsonPayload;
           }
-        })
-        .then(async function(data) {
-          var payload = data.payload;
-          if (!(payload && payload.moe_cid_attr)) return;
-          if (data.cid) {
-            campaignId = data.cid;
-            const isCampaigTriggered = await isCampaignAlreadyTriggered(
-              campaignId
-            );
-            if (isCampaigTriggered) {
-              throw new Error(
-                `The campaign ${campaignId} has already been executed.`
-              );
-            }
-            var campaignBackup = {
-              cid: campaignId
-            };
-
-            if (payload) {
-              campaignBackup = {
-                cid: campaignId,
-                title: payload.title,
-                message: payload.message,
-                actions: payload.actions,
-                image: payload.image,
-                moe_cid_attr: payload.moe_cid_attr,
-                timestamp: Date.now()
-              };
-            }
-
-            await setCampaingData(campaignId, campaignBackup);
-          }
-
-          if (!payload || !payload.title || !payload.message) {
-            trackEvent(
-              'MOE_NO_PAYLOAD_WEB',
-              {
-                cid: data.cid
-              },
-              0
-            );
-            console.error('Moengage - Web Push payload error');
-            return showNotificationForError('Welcome', {
-              body: 'Something unexpected happened',
-              requireInteraction: false
-            });
-          }
-
-          var campaign_id;
-          var campaign_name;
-          try {
-            campaign_id = payload.moe_cid_attr.moe_campaign_id;
-            campaign_name = payload.moe_cid_attr.moe_campaign_name;
-          } catch (err) {
-            throw new Error('cannot get campaign ID or campaign Name.');
-          }
-
-          trackEvent(
-            'NOTIFICATION_RECEIVED_WEB_MOE',
-            {
-              cid: campaignId,
-              moe_campaign_id: campaign_id,
-              moe_campaign_name: campaign_name,
-              ...payload.moe_cid_attr
-            },
-            1
+        } catch (err) {
+          console.error(
+            'payload not received or has some errors in Moengage Push'
           );
-
-          var params = {
-            body: payload.message,
-            icon: payload.icon,
-            tag: data.cid || 'moe-id',
-            badge: payload.badge,
-            data: {
-              url: payload.urlToOpen,
-              actions: payload.actions,
-              cid: campaignId
-            },
-            requireInteraction:
-              (payload && !JSON.parse(data.payload.reqInteract)) || false,
-            actions: payload.actions,
-            image: payload.image
+        }
+      })
+      .then(async function (data) {
+        var payload = data.payload;
+        if (!(payload && payload.moe_cid_attr)) return;
+        if (data.cid) {
+          campaignId = data.cid;
+          const isCampaigTriggered = await isCampaignAlreadyTriggered(
+            campaignId
+          );
+          if (isCampaigTriggered) {
+            throw new Error(
+              `The campaign ${campaignId} has already been executed.`
+            );
+          }
+          var campaignBackup = {
+            cid: campaignId
           };
 
-          return showNotification(payload.title, params);
-        })
-        .catch(function(err) {
-          console.error('Moengage Service Worker Error - ', err);
+          if (payload) {
+            campaignBackup = {
+              cid: campaignId,
+              title: payload.title,
+              message: payload.message,
+              actions: payload.actions,
+              image: payload.image,
+              moe_cid_attr: payload.moe_cid_attr,
+              timestamp: Date.now()
+            };
+          }
+
+          await setCampaingData(campaignId, campaignBackup);
+        }
+
+        if (!payload || !payload.title || !payload.message) {
+          trackEvent(
+            'MOE_NO_PAYLOAD_WEB', {
+              cid: data.cid
+            },
+            0
+          );
+          console.error('Moengage - Web Push payload error');
           return showNotificationForError('Welcome', {
             body: 'Something unexpected happened',
             requireInteraction: false
           });
-        })
+        }
+
+        var campaign_id;
+        var campaign_name;
+        try {
+          campaign_id = payload.moe_cid_attr.moe_campaign_id;
+          campaign_name = payload.moe_cid_attr.moe_campaign_name;
+        } catch (err) {
+          throw new Error('cannot get campaign ID or campaign Name.');
+        }
+
+        trackEvent(
+          'NOTIFICATION_RECEIVED_WEB_MOE', {
+            cid: campaignId,
+            moe_campaign_id: campaign_id,
+            moe_campaign_name: campaign_name,
+            ...payload.moe_cid_attr
+          },
+          1
+        );
+
+        var params = {
+          body: payload.message,
+          icon: payload.icon,
+          tag: data.cid || 'moe-id',
+          badge: payload.badge,
+          data: {
+            url: payload.urlToOpen,
+            actions: payload.actions,
+            cid: campaignId
+          },
+          requireInteraction: (payload && !JSON.parse(data.payload.reqInteract)) || false,
+          actions: payload.actions,
+          image: payload.image
+        };
+
+        return showNotification(payload.title, params);
+      })
+      .catch(function (err) {
+        console.error('Moengage Service Worker Error - ', err);
+        return showNotificationForError('Welcome', {
+          body: 'Something unexpected happened',
+          requireInteraction: false
+        });
+      })
     );
   }
 
@@ -284,7 +272,7 @@ var MoengageSW = (function(self) {
         throw new Error('Existing campaign not present in indexedDB');
       } else {
         const data = await getCampaignData();
-        iterateData(data, function(dbCampaignId) {
+        iterateData(data, function (dbCampaignId) {
           if (campaignId === dbCampaignId) {
             return true;
           }
@@ -300,7 +288,7 @@ var MoengageSW = (function(self) {
 
   async function removeOldCampaignsFromIndexedDB() {
     const data = await getCampaignData();
-    iterateData(data, async function(campaignId, campaign) {
+    iterateData(data, async function (campaignId, campaign) {
       const now = Date.now();
       const timeDiff = (now - campaign.timestamp) / (1000 * 60 * 60 * 24);
       if (timeDiff > MAX_DAYS_CAMPAIGN_SAVE) {
@@ -343,9 +331,9 @@ var MoengageSW = (function(self) {
       }
     }
 
-    var eventTracker = new Promise(async function(res) {
+    var eventTracker = new Promise(async function (res) {
       const data = await getCampaignData();
-      iterateData(data, async function(campaignId, campaign) {
+      iterateData(data, async function (campaignId, campaign) {
         if (campaignId == notificationData.cid) {
           var campaign_id;
           var campaign_name;
@@ -356,8 +344,7 @@ var MoengageSW = (function(self) {
             throw new Error(err);
           }
           trackEvent(
-            'NOTIFICATION_CLICKED_WEB_MOE',
-            {
+            'NOTIFICATION_CLICKED_WEB_MOE', {
               cid: campaign.cid,
               button: notificationTitle || void 0,
               moe_campaign_id: campaign_id,
@@ -369,7 +356,7 @@ var MoengageSW = (function(self) {
           await removeCampaignData(campaignId);
           return campaignId;
         }
-      }).then(function(result) {
+      }).then(function (result) {
         console.info('Web Push Campaign clicked: ', result);
         res();
       });
@@ -377,27 +364,27 @@ var MoengageSW = (function(self) {
 
     event.waitUntil(
       getStoreData('reportParams')
-        .then(function(res) {
-          if (res.data.environment) {
-            baseDomain.set(res.data.environment);
-          }
-          return;
-        })
-        .then(function() {
-          return Promise.all([clickResponsePromise, eventTracker]);
-        })
+      .then(function (res) {
+        if (res.data && res.data.environment) {
+          baseDomain.set(res.data.environment);
+        }
+        return;
+      })
+      .then(function () {
+        return Promise.all([clickResponsePromise, eventTracker]);
+      })
     );
   }
 
   async function onNotificationClose(event) {
     var notificationData = event.notification.data;
     const data = await getCampaignData();
-    iterateData(data, function(campaignId, campaign) {
+    iterateData(data, function (campaignId, campaign) {
       if (campaignId == notificationData.cid) {
         //   moeCampaignsDB.removeItem(campaignId);
         return campaignId;
       }
-    }).then(function(result) {
+    }).then(function (result) {
       console.info('Web Push Campaign closed: ', result);
     });
   }
@@ -406,22 +393,8 @@ var MoengageSW = (function(self) {
     var endpoint = subscriptionDetails.endpoint;
     if (endpoint.indexOf(URLS.FCM_END_POINT) === 0) {
       return endpoint.replace(URLS.FCM_END_POINT, '');
-    } else if (endpoint.indexOf(URLS.MOZILLA_END_POINT) === 0) {
-      return endpoint.replace(URLS.MOZILLA_END_POINT, '');
-    } else if (endpoint.indexOf(URLS.SAFARI_END_POINT) === 0) {
-      return endpoint.replace(URLS.SAFARI_END_POINT, '');
-    } else if (endpoint.indexOf(URLS.EDGE_END_POINT) === 0) {
-      return endpoint.replace(URLS.EDGE_END_POINT, '');
     }
     return subscriptionDetails.subscriptionId;
-  }
-
-  function constructGet(url, params) {
-    url = url + '?';
-    for (var key in params) {
-      url += key + '=' + params[key] + '&';
-    }
-    return url;
   }
 
   function showNotification(title, data) {
@@ -429,13 +402,13 @@ var MoengageSW = (function(self) {
   }
 
   function showNotificationForError(title, data) {
-    return self.registration.showNotification(title, data).then(function() {
+    return self.registration.showNotification(title, data).then(function () {
       setTimeout(closeNotifications, 2000);
     });
   }
 
   function closeNotifications() {
-    self.registration.getNotifications().then(function(notifications) {
+    self.registration.getNotifications().then(function (notifications) {
       for (var i = 0; i < notifications.length; ++i) {
         notifications[i].close();
       }
@@ -443,7 +416,7 @@ var MoengageSW = (function(self) {
   }
 
   function trackEvent(eventName, attrs, flag, extraKeys = {}) {
-    getStoreData('reportParams').then(function(res) {
+    getStoreData('reportParams').then(function (res) {
       if (!res) {
         return;
       }
@@ -458,7 +431,7 @@ var MoengageSW = (function(self) {
 
       self.registration.pushManager
         .getSubscription()
-        .then(function(subscription) {
+        .then(function (subscription) {
           if (subscription) {
             var subscriptionId = splitEndPointSubscription(subscription);
             if (subscriptionId) {
@@ -480,21 +453,19 @@ var MoengageSW = (function(self) {
               request_time: new Date().toISOString()
             },
             viewsCount: 1,
-            viewsInfo: [
-              {
-                EVENT_ACTION: eventName,
-                EVENT_ATTRS: attrs,
-                EVENT_G_TIME: new Date().getTime().toString(),
-                EVENT_L_TIME: convertDateToDateMonthYearFormat()
-              }
-            ],
+            viewsInfo: [{
+              EVENT_ACTION: eventName,
+              EVENT_ATTRS: attrs,
+              EVENT_G_TIME: new Date().getTime().toString(),
+              EVENT_L_TIME: convertDateToDateMonthYearFormat()
+            }],
             ...extraKeys
           };
 
           fetch(URLS.batch() + data.app_id, {
             method: 'POST',
             body: JSON.stringify(payload)
-          }).then(function(response) {
+          }).then(function (response) {
             return response.json();
           });
         });
@@ -531,149 +502,9 @@ var MoengageSW = (function(self) {
     );
   }
 
-  /**
-   * Sync event will be registered incase of offline mode
-   * Background sync supported browsers will replay in periodic intervals till promise is resolved
-   */
-  function onSync(event) {
-    if (event.tag === 'moe_offline_data_sync') {
-      event.waitUntil(
-        openDatabaseAndReplayMOERequests().then(function(message) {
-          // callback on success
-        })
-      );
-    }
-  }
-
-  /**
-   * Merges multiple batch reports from offline db
-   */
-  function mergeMOEReports() {
-    return new Promise(function(resolve) {
-      return Object.keys(getStoreData('offline_data'))
-        .then(function(keys) {
-          return keys;
-        })
-        .then(function(keys) {
-          return new Promise(function() {
-            var promises = [];
-            keys.map(function(key) {
-              if (key !== 'requestMetaData') {
-                getOfflineStoreData(key).then(res => {
-                  promises.push(getOfflineStoreData(res));
-                });
-              }
-            });
-            Promise.all(promises).then(function(reports) {
-              resolve(reports);
-            });
-          });
-        });
-    });
-  }
-
-  /**
-   * Flattens the array
-   */
-  function flattenArray(reports) {
-    return reports.reduce(function(acc, report) {
-      return Array.isArray(report)
-        ? acc.concat(flattenArray(report))
-        : acc.concat(report);
-    }, []);
-  }
-
-  /**
-   * Reterives API request metadata from offline db
-   */
-  async function getRequestMetaData() {
-    const requestMetaData = await getStoreData('requestMetaData');
-      return requestMetaData;
-  }
-
-  /**
-   * Creates Report Adf request object
-   */
-  async function requestPayload() {
-    const moeRequestValues = await Promise.all([getRequestMetaData(), mergeMOEReports()]);
-      if (moeRequestValues[0] && moeRequestValues[1]) {
-          var requestData = moeRequestValues[0];
-          var mergedReports = flattenArray(moeRequestValues[1]);
-          requestData.viewsInfo = mergedReports;
-          requestData.viewsCount = mergedReports.length;
-          return requestData;
-      }
-      return;
-  }
-
-  /**
-   * Replays failed report_add requests in a single batch
-   * Fetches offline data from indexdb
-   */
-  function openDatabaseAndReplayMOERequests() {
-    return new Promise(function(resolve, reject) {
-      requestPayload()
-        .then(function(reports) {
-          if (!reports) {
-            resolve('No pending requests to replay');
-          } else {
-            return fetch(URLS.batch() + reports.query_params.app_id, {
-              method: 'POST',
-              body: JSON.stringify(reports)
-            })
-              .then(function(response) {
-                return response.json();
-              })
-              .then(function(response) {
-                if (response.status !== 'success') {
-                  throw new Error();
-                }
-                return removeStoreData('offline_data').then(function() {
-                  resolve(
-                    'successfully replayed failed requests and cleared db'
-                  );
-                });
-              });
-          }
-        })
-        .catch(function(err) {
-          reject('Replaying failed.', err);
-        });
-    });
-  }
-
-  /**
-   * Browsers that won't support background sync will replay when service worker starts.
-   * Fallback strategy
-   */
-  function initOfflineSync() {
-    getStoreData('reportParams').then(function(res) {
-      if (
-        res &&
-        res.data &&
-        (res.data.isBatchingEnabled === 'allowed' ||
-          res.data.isBatchingEnabled === true)
-      ) {
-        openDatabaseAndReplayMOERequests()
-          .then(function(message) {
-            console.log(message);
-          })
-          .catch(function(message) {
-            console.log(message);
-          });
-      }
-    });
-  }
-
   return {
     init: init
   };
 })(self);
 
 MoengageSW.init();
-
-self.addEventListener('fetch', event => {
-  // This is a dummy event listener
-  // just to pass the PWA installation criteria on
-  // some browsers
-});
