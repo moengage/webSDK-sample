@@ -93,7 +93,7 @@ var MoengageSW = (function (self) {
     return false;
   }
 
-  async function resetStorageData(params) {
+  async function resetStorageData() {
     await removeStoreData('moe_backup');
     await removeStoreData('reportParams');
   }
@@ -115,33 +115,52 @@ var MoengageSW = (function (self) {
 
   var init = async function () {
     await resetStorageData();
-    self.addEventListener('install', onInstall);
-    self.addEventListener('activate', onActivate);
-    self.addEventListener('message', onMessage);
+    chrome.runtime.onInstalled.addListener(onInstall);
+    chrome.runtime.onStartup.addListener(onActivate);
+    chrome.runtime.onMessage.addListener(onMessage);
     self.addEventListener('push', onPush);
     self.addEventListener('notificationclick', onNotificationClick);
     self.addEventListener('notificationclose', onNotificationClose);
   };
 
   function onInstall(event) {
-    event.waitUntil(self.skipWaiting());
+    if (details.reason === 'install') {
+      console.log('Extension installed');
+    } else if (details.reason === 'update') {
+      console.log('Extension updated');
+    }
   }
 
   function onActivate(event) {
-    event.waitUntil(self.clients.claim());
+    console.log('Service worker activated');
+    // Claim any clients immediately
+    self.clients.claim();
   }
 
-  async function onMessage(event) {
-    if (event.data) {
-      if (event.data.app_id) {
-        event.waitUntil(setStoreData('reportParams', event).then((res => {
-          if (res.data.environment) {
-            baseDomain.set(event.data.environment);
+  function onMessage(message, sender, sendResponse) {
+    const asyncOperation = new Promise(async (resolve, reject) => {
+      if (message.data) {
+        try {
+          await setStoreData('reportParams', message);
+          if (message.data.environment) {
+            baseDomain.set(message.data.environment);
           }
-        })));
-
+          resolve();
+        } catch (error) {
+          reject(error);
+        }
+      } else {
+        resolve();
       }
-    }
+    });
+  
+    asyncOperation.then(() => {
+      sendResponse({ status: 'success' });
+    }).catch((error) => {
+      sendResponse({ status: 'error', message: error.message });
+    });
+  
+    return true;
   }
 
   async function onPush(event) {
@@ -419,7 +438,7 @@ var MoengageSW = (function (self) {
 
   function trackEvent(eventName, attrs, flag, extraKeys = {}) {
     getStoreData('reportParams').then(function (res) {
-      if (!res || !res.data) {
+      if (!res) {
         return;
       }
       var data = res.data;
