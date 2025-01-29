@@ -1,11 +1,11 @@
 {
-  "name": "Moengage SDK",
+  "name": "Moengage SDK WebPush",
   "description": "Moengage Web SDK Sample for Chrome Extension",
   "version": "1.0",
   "background": {
     "service_worker": "background.js"
   },
-  "permissions": ["notifications", "storage"],
+  "permissions": ["notifications"],
   "web_accessible_resources": [{
     "resources": [ "injectScripts/webSDK.min.js", "injectScripts/webSDK.cards.min.js" ],
     "matches": [ "<all_urls>" ]
