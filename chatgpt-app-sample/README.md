@@ -1,17 +1,20 @@
-# MoEngage ChatGPT App Sample
+# Booking.com-like Hotel Booking App with MoEngage
 
-A Next.js sample application demonstrating MoEngage WebSDK integration with ChatGPT Apps, including comprehensive tracking, AI detection, and user engagement capabilities.
+A Next.js hotel booking application (similar to Booking.com) demonstrating MoEngage WebSDK integration with ChatGPT Apps. This app includes comprehensive tracking, AI detection, and user engagement capabilities.
 
 ## Features
 
+- ✅ **Booking.com-like Interface** - Professional hotel booking UI
 - ✅ **Next.js 14** - Modern React framework with App Router
 - ✅ **TypeScript** - Full type safety
-- ✅ **MoEngage WebSDK Integration** - Full tracking and analytics
+- ✅ **MoEngage WebSDK Integration** - Full tracking and analytics (Staging SDK v5.02.45)
 - ✅ **ChatGPT Apps SDK Integration** - Compatible with OpenAI's ChatGPT Apps platform
 - ✅ **AI Bot Detection** - Automatically detects and blocks AI bot traffic
 - ✅ **AI-Assisted Browser Detection** - Identifies users on AI-assisted browsers
 - ✅ **GPT App Detection** - Detects when app is running within ChatGPT
-- ✅ **Comprehensive Event Tracking** - Tracks all user interactions
+- ✅ **Comprehensive Event Tracking** - Tracks hotel searches, views, and bookings
+- ✅ **User Identification** - Track users across sessions
+- ✅ **Real-time Tracking Logs** - Monitor all events in real-time
 
 ## Quick Start
 
@@ -21,11 +24,10 @@ A Next.js sample application demonstrating MoEngage WebSDK integration with Chat
    ```
 
 2. **Configure MoEngage:**
-   - Update `app/page.tsx` with your MoEngage App ID and Data Center
-   - Or create `.env.local`:
+   Create `.env.local`:
      ```
      NEXT_PUBLIC_MOENGAGE_DATACENTER=dc_01
-     NEXT_PUBLIC_MOENGAGE_APP_ID=YOUR_APP_ID
+     NEXT_PUBLIC_MOENGAGE_APP_ID=3RADPYNEBZ2MCOJ43EEW5FWV
      ```
 
 3. **Run development server:**
@@ -35,12 +37,22 @@ A Next.js sample application demonstrating MoEngage WebSDK integration with Chat
 
 4. **Open:** http://localhost:4000
 
+## Testing in ChatGPT
+
+**📖 Complete Step-by-Step Guide**: See [CHATGPT_TESTING_GUIDE.md](./CHATGPT_TESTING_GUIDE.md) for detailed instructions on:
+- Deploying your app
+- Creating a ChatGPT GPT
+- Configuring widgets and CSP
+- Testing all scenarios
+- Verifying MoEngage tracking
+
 ## Documentation
 
-- [Quick Start Guide](./QUICKSTART.md)
-- [Testing Guide](./TESTING_GUIDE.md)
-- [Deployment Instructions](./DEPLOYMENT_INSTRUCTIONS.md)
-- [Integration Examples](./INTEGRATION_EXAMPLES.md)
+- [Quick Start Guide](./QUICK_START.md) - Get started quickly
+- [ChatGPT Testing Guide](./CHATGPT_TESTING_GUIDE.md) - **Complete guide for testing in ChatGPT**
+- [MoEngage Tracking Guide](./MOENGAGE_TRACKING.md) - **Complete event tracking documentation**
+- [Deployment Instructions](./DEPLOYMENT_INSTRUCTIONS.md) - Production deployment
+- [Integration Examples](./INTEGRATION_EXAMPLES.md) - Code examples
 
 ## Project Structure
 

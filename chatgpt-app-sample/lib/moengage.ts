@@ -43,15 +43,16 @@ export const initializeMoEngage = (config: MoEngageConfig) => {
 
   const script = document.createElement('script');
   script.async = true;
-  // script.src = `https://cdn.moengage.com/release/${dataCenter}/versions/${sdkVersion}/moe_webSdk.min.latest.js`;
   script.src = `https://js.moengage.com/staging/versions/5.02.45/sdk.js`;
   script.onload = () => {
-    if (window.moe) {
+    if (window.moe && typeof window.moe === 'function') {
       window.Moengage = window.moe({
         app_id: appId,
         cluster: dataCenter.toUpperCase(),
         debug_logs: debugLogs,
       });
+    } else if (window.moengage_object) {
+      window.Moengage = window.moengage_object;
     }
   };
   script.onerror = () => {

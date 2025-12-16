@@ -14,6 +14,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
+        <meta
+          httpEquiv="Content-Security-Policy"
+          content="frame-ancestors 'self' https://chat.openai.com https://chatgpt.com; script-src 'self' 'unsafe-inline' https://js.moengage.com https://cdn.moengage.com https://cdn.openai.com; connect-src 'self' https://*.moengage.com https://api.openai.com;"
+        />
         <script
           src="https://cdn.openai.com/apps-sdk-js/latest/apps-sdk.js"
           async
