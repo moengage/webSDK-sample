@@ -14,7 +14,7 @@ use PHPUnit\Framework\TestCase;
 
 class GetCustomerByTokenTest extends TestCase
 {
-    private const RESET_PASSWORD = '8ed8677e6c79e68b94e61658bd756ea5';
+    private const RESET_PASSWORD = '';
 
     /** @var ObjectManagerInterface */
     private $objectManager;

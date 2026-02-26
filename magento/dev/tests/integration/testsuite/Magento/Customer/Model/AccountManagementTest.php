@@ -371,8 +371,8 @@ class AccountManagementTest extends \PHPUnit\Framework\TestCase
     {
         $this->expectException(\Magento\Framework\Exception\State\InputMismatchException::class);
 
-        $resetToken = 'lsdj579slkj5987slkj595lkj';
-        $password = 'new_Password123';
+        $resetToken = '';
+        $password = '';
         $email = 'customer@example.com';
         $this->setResetPasswordData($resetToken, 'Y-m-d H:i:s');
         $this->assertTrue($this->accountManagement->resetPassword($email, $resetToken, $password));

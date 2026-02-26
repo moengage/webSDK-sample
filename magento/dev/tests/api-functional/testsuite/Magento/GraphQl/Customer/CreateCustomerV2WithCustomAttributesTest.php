@@ -95,7 +95,7 @@ mutation {
             firstname: "Adam"
             lastname: "Smith"
             email: "adam@smith.com"
-            password: "test123#"
+            password: "#"
             custom_attributes: [
                 {
                     attribute_code: "%s"

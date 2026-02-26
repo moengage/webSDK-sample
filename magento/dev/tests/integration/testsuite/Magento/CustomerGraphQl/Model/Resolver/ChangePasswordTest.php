@@ -75,7 +75,7 @@ class ChangePasswordTest extends TestCase
 mutation {
   changeCustomerPassword(
     currentPassword: "$currentPassword"
-    newPassword: "T3stP4assw0rd"
+    newPassword: ""
   ) {
     id
     email

@@ -56,8 +56,8 @@ class AdminAccountTest extends TestCase
         $data = [
             AdminAccount::KEY_FIRST_NAME => 'John',
             AdminAccount::KEY_LAST_NAME => 'Doe',
-            AdminAccount::KEY_EMAIL => 'john.doe@test.com',
-            AdminAccount::KEY_PASSWORD => '123123q',
+            AdminAccount::KEY_EMAIL => '',
+            AdminAccount::KEY_PASSWORD => '',
             AdminAccount::KEY_USER => 'admin',
             AdminAccount::KEY_PREFIX => 'pre_'
         ];
@@ -78,7 +78,7 @@ class AdminAccountTest extends TestCase
     {
         // existing user data
         $existingUserData = [
-            'email' => 'john.doe@test.com',
+            'email' => '',
             'username' => 'admin',
             'user_id' => 1
         ];

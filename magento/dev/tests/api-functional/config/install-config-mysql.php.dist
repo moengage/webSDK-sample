@@ -21,7 +21,7 @@ return [
     'admin-firstname'              => 'Admin',
     'admin-email'                  => 'admin@example.com',
     'admin-user'                   => 'admin',
-    'admin-password'               => '123123q',
+    'admin-password'               => '',
     'admin-use-security-key'       => '0',
     /* PayPal has limitation for order number - 20 characters. 10 digits prefix + 8 digits number is good enough */
     'sales-order-increment-prefix' => time(),

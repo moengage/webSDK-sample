@@ -24,7 +24,7 @@ class ResetPasswordTest extends GraphQlAbstract
 {
     const CUSTOMER_EMAIL = "customer@example.com";
 
-    const CUSTOMER_NEW_PASSWORD = "new_password123";
+    const CUSTOMER_NEW_PASSWORD = "";
 
     /** @var ObjectManagerInterface */
     private $objectManager;

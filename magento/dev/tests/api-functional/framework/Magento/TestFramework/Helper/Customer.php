@@ -35,7 +35,7 @@ class Customer extends WebapiAbstract
     /** Sample values for testing */
     const FIRSTNAME = 'Jane';
     const LASTNAME = 'Doe';
-    const PASSWORD = 'test@123';
+    const PASSWORD = '';
 
     const ADDRESS_CITY1 = 'CityM';
     const ADDRESS_CITY2 = 'CityX';

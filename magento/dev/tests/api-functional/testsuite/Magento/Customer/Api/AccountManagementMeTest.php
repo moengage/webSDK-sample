@@ -129,14 +129,14 @@ class AccountManagementMeTest extends \Magento\TestFramework\TestCase\WebapiAbst
                 'token' => $this->token
             ]
         ];
-        $requestData = ['currentPassword' => 'test@123', 'newPassword' => '123@test'];
+        $requestData = ['currentPassword' => '', 'newPassword' => ''];
         if (TESTS_WEB_API_ADAPTER === 'soap') {
             $requestData['customerId'] = 0;
         }
         $this->assertTrue($this->_webApiCall($serviceInfo, $requestData));
 
         $customerResponseData = $this->customerAccountManagement
-            ->authenticate($this->customerData[CustomerInterface::EMAIL], '123@test');
+            ->authenticate($this->customerData[CustomerInterface::EMAIL], '');
         $this->assertEquals($this->customerData[CustomerInterface::ID], $customerResponseData->getId());
     }
 

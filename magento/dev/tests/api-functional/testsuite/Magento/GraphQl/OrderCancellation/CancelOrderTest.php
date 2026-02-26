@@ -257,7 +257,7 @@ QUERY;
             Customer::class,
             [
                 'email' => 'another@example.com',
-                'password' => 'pa55w0rd'
+                'password' => ''
             ],
             'another'
         ),
