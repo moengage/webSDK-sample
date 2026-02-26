@@ -64,7 +64,7 @@ class ChangeCustomerPasswordTest extends GraphQlAbstract
     {
         $customerEmail = 'customer@example.com';
         $currentPassword = 'password';
-        $newPassword = 'anotherPassword1';
+        $newPassword = '';
 
         $query = $this->getQuery($currentPassword, $newPassword);
         $headerMap = $this->getCustomerAuthHeaders($customerEmail, $currentPassword);

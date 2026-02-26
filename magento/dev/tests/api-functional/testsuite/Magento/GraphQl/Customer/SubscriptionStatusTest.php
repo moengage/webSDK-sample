@@ -158,7 +158,7 @@ QUERY;
     public function testSubscriptionStatusInMultiWebsiteSetup(): void
     {
         $currentEmail = 'customer_second_ws_with_addr@example.com';
-        $currentPassword = 'Apassword1';
+        $currentPassword = '';
 
         $query = <<<QUERY
             mutation {

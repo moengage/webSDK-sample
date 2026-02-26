@@ -118,7 +118,7 @@ class AsyncBulkAccountManagementTest extends WebapiAbstract
                     'lastname' => 'Doe',
                     'website_id' => $fixtures->get('website2')->getId()
                 ],
-                'password' => 'J!Do&007',
+                'password' => '',
             ]
         ];
         $response = $this->postAsync($postData);

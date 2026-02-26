@@ -44,7 +44,7 @@ class CreateCustomerV2Test extends GraphQlAbstract
     {
         $newFirstname = 'Richard';
         $newLastname = 'Rowe';
-        $currentPassword = 'test123#';
+        $currentPassword = '';
 
         $query = <<<QUERY
 mutation {

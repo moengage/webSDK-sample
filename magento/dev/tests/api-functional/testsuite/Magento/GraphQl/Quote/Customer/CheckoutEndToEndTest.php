@@ -127,7 +127,7 @@ mutation {
       firstname: "endto"
       lastname: "endtester"
       email: "customer@example.com"
-      password: "123123Qa"
+      password: ""
     }
   ) {
     customer {

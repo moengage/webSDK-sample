@@ -208,7 +208,7 @@ mutation {
     firstname: "test"
     lastname: "test"
     email: "$customerEmail"
-    password: "123123^q"
+    password: ""
   })
    {
   customer {

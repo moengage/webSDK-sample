@@ -300,8 +300,8 @@ class AccountTest extends AbstractController
             ->setMethod('POST')
             ->setPostValue(
                 [
-                    'password' => 'new-Password1',
-                    'password_confirmation' => 'new-Password1',
+                    'password' => '',
+                    'password_confirmation' => '',
                 ]
             );
 

@@ -280,7 +280,7 @@ class AuthTest extends \Magento\TestFramework\TestCase\AbstractBackendController
             $user->save();
         }
 
-        $newDummyPassword = 'new_dummy_password2';
+        $newDummyPassword = '';
 
         $this->getRequest()->setQueryValue(
             'token',

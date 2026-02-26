@@ -33,7 +33,7 @@ class CaseCheckOnFrontendUnsuccessfulMessageWhenCaptchaFailedTest extends Abstra
         $post = [
             'login' => [
                 'username' => 'dummy@dummy.com',
-                'password' => 'dummy_password1',
+                'password' => '',
             ],
             'captcha' => ['user_login' => 'wrong_captcha'],
             'form_key' => $formKey->getFormKey(),

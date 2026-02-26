@@ -33,7 +33,7 @@ class HydratorTest extends \Magento\TestFramework\TestCase\WebapiAbstract
      */
     protected $dataObjectProcessor;
 
-    const PASSWORD = 'test@123';
+    const PASSWORD = '';
 
     protected function setUp(): void
     {

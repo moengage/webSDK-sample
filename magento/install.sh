@@ -8,7 +8,7 @@ bin/magento setup:install \
 --admin-lastname=admin \
 --admin-email=admin@admin.com \
 --admin-user=admin \
---admin-password=Admin@123 \
+--admin-password= \
 --language=en_US \
 --currency=USD \
 --timezone=America/Chicago \

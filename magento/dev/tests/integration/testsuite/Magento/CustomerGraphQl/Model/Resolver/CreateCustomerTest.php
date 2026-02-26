@@ -74,10 +74,10 @@ class CreateCustomerTest extends TestCase
 mutation createAccount {
     createCustomer(
         input: {
-            email: "test@magento.com"
+            email: ""
             firstname: "Test"
             lastname: "Magento"
-            password: "T3stP4assw0rd"
+            password: ""
             is_subscribed: false
         }
     ) {

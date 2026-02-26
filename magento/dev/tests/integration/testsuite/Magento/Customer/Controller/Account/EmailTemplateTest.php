@@ -103,8 +103,8 @@ class EmailTemplateTest extends AbstractController
             'email' => 'new.email@example.com',
             'change_email' => 1,
             'change_password' => 1,
-            'password' => 'new-Password1',
-            'password_confirmation' => 'new-Password1',
+            'password' => '',
+            'password_confirmation' => '',
         ]);
 
         $this->assertRedirect($this->stringContains('customer/account/'));

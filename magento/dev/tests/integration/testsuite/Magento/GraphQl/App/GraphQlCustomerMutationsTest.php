@@ -145,7 +145,7 @@ class GraphQlCustomerMutationsTest extends \PHPUnit\Framework\TestCase
         $email = 'customer@example.com';
         $this->graphQlStateDiff->testState(
             $query,
-            ['email' => $email, 'newPassword' => 'new_password123', 'resetPasswordToken' =>
+            ['email' => $email, 'newPassword' => '', 'resetPasswordToken' =>
                 $this->graphQlStateDiff->getResetPasswordToken($email)],
             [],
             [],
