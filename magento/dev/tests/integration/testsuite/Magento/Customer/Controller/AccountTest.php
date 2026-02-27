@@ -426,8 +426,8 @@ class AccountTest extends AbstractController
                     'change_password' => 1,
                     'change_email' => 1,
                     'current_password' => 'password',
-                    'password' => 'new-Password1',
-                    'password_confirmation' => 'new-Password1',
+                    'password' => '',
+                    'password_confirmation' => '',
                 ]
             );
 

@@ -160,7 +160,7 @@ QUERY;
 
         $newFirstname = 'Richard';
         $newLastname = 'Rowe';
-        $currentPassword = 'test123#';
+        $currentPassword = '';
 
         $query = <<<QUERY
 mutation {

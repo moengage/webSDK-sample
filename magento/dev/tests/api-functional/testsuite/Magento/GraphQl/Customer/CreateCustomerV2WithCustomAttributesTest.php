@@ -236,7 +236,7 @@ mutation {
             firstname: "John"
             lastname: "Doe"
             email: "john@doe.com"
-            password: "test123#"
+            password: ""
             custom_attributes: [
                 {
                     attribute_code: "non_existing_custom_attribute",
