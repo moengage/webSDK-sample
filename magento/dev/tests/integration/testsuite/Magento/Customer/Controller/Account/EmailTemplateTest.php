@@ -128,8 +128,8 @@ class EmailTemplateTest extends AbstractController
 
         $this->sendAccountEditRequest([
             'change_password' => 1,
-            'password' => 'new-Password1',
-            'password_confirmation' => 'new-Password1',
+            'password' => '',
+            'password_confirmation' => '',
         ]);
 
         $this->assertRedirect($this->stringContains('customer/account/'));
