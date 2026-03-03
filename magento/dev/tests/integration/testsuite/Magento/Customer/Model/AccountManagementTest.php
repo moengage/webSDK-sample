@@ -183,7 +183,7 @@ class AccountManagementTest extends \PHPUnit\Framework\TestCase
 
         $this->assertNull($this->getCustomerCutoff($customerId), 'Customer cutoff session should not be set.');
         // change password
-        $this->accountManagement->changePassword('customer@example.com', 'password', 'new_Password123');
+        $this->accountManagement->changePassword('customer@example.com', 'password', '');
         $this->assertEquals(
             $currentSessionId,
             $session->getSessionId(),
@@ -203,7 +203,7 @@ class AccountManagementTest extends \PHPUnit\Framework\TestCase
             $this->getVisitorCreatedAt($currentVisitor->getId())
         );
 
-        $this->accountManagement->authenticate('customer@example.com', 'new_Password123');
+        $this->accountManagement->authenticate('customer@example.com', '');
     }
 
     /**
@@ -215,7 +215,7 @@ class AccountManagementTest extends \PHPUnit\Framework\TestCase
         $this->expectException(\Magento\Framework\Exception\InvalidEmailOrPasswordException::class);
         $this->expectExceptionMessage('The password doesn\'t match this account. Verify the password and try again.');
 
-        $this->accountManagement->changePassword('customer@example.com', 'wrongPassword', 'new_Password123');
+        $this->accountManagement->changePassword('customer@example.com', 'wrongPassword', '');
     }
 
     /**
@@ -227,7 +227,7 @@ class AccountManagementTest extends \PHPUnit\Framework\TestCase
         $this->expectException(\Magento\Framework\Exception\InvalidEmailOrPasswordException::class);
         $this->expectExceptionMessage('Invalid login or password.');
 
-        $this->accountManagement->changePassword('wrong.email@example.com', '_Password123', 'new_Password123');
+        $this->accountManagement->changePassword('wrong.email@example.com', '_Password123', '');
     }
 
     /**
@@ -432,7 +432,7 @@ class AccountManagementTest extends \PHPUnit\Framework\TestCase
         $session->setVisitorData($currentVisitor->getData());
 
         $resetToken = 'lsdj579slkj5987slkj595lkj';
-        $password = 'new_Password123';
+        $password = '';
 
         $this->assertNull($this->getCustomerCutoff($customerId), 'Customer cutoff session should not be set.');
 
@@ -465,7 +465,7 @@ class AccountManagementTest extends \PHPUnit\Framework\TestCase
     public function testResetPasswordTokenExpired()
     {
         $resetToken = 'lsdj579slkj5987slkj595lkj';
-        $password = 'new_Password123';
+        $password = '';
 
         $this->setResetPasswordData($resetToken, '1970-01-01 00:00:00');
         try {
@@ -484,7 +484,7 @@ class AccountManagementTest extends \PHPUnit\Framework\TestCase
     {
         $resetToken = 'lsdj579slkj5987slkj595lkj';
         $invalidToken = '0';
-        $password = 'new_Password123';
+        $password = '';
 
         $this->setResetPasswordData($resetToken, 'Y-m-d H:i:s');
         try {
@@ -504,7 +504,7 @@ class AccountManagementTest extends \PHPUnit\Framework\TestCase
     public function testResetPasswordTokenWrongUser()
     {
         $resetToken = 'lsdj579slkj5987slkj595lkj';
-        $password = 'new_Password123';
+        $password = '';
         $this->setResetPasswordData($resetToken, 'Y-m-d H:i:s');
         try {
             $this->accountManagement->resetPassword('invalid-customer@example.com', $resetToken, $password);
@@ -523,7 +523,7 @@ class AccountManagementTest extends \PHPUnit\Framework\TestCase
     public function testResetPasswordTokenInvalidUserEmail()
     {
         $resetToken = 'lsdj579slkj5987slkj595lkj';
-        $password = 'new_Password123';
+        $password = '';
 
         $this->setResetPasswordData($resetToken, 'Y-m-d H:i:s');
 
@@ -541,7 +541,7 @@ class AccountManagementTest extends \PHPUnit\Framework\TestCase
     public function testResetPasswordWithoutEmail()
     {
         $resetToken = 'lsdj579slkj5987slkj595lkj';
-        $password = 'new_Password123';
+        $password = '';
         $this->setResetPasswordData($resetToken, 'Y-m-d H:i:s');
         $this->expectException(InputException::class);
         $this->accountManagement->resetPassword(null, $resetToken, $password);

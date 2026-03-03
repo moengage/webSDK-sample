@@ -196,14 +196,14 @@ QUERY;
     {
         $firstname = 'Richard';
         $lastname = 'Rowe';
-        $password = 'test123#';
+        $password = '';
 
         $query = <<<QUERY
 mutation {
     createCustomerV2(
         input: {
             firstname: "{$firstname}"
-            lastname: "{$lastname}"
+        lastname: "{$lastname}"
             email: "{$email}"
             password: "{$password}"
             is_subscribed: true
@@ -249,7 +249,7 @@ QUERY;
 
         $newFirstname = 'Richard';
         $newLastname = 'Rowe';
-        $currentPassword = 'test123#';
+        $currentPassword = '';
         $newEmail = 'new_customer@example.com';
 
         $query = <<<QUERY
@@ -287,7 +287,7 @@ QUERY;
         $newEmail = 'customer_created' . rand(1, 2000000) . '@example.com';
         $newFirstname = '';
         $newLastname = 'Rowe';
-        $currentPassword = 'test123#';
+        $currentPassword = '';
         $query = <<<QUERY
 mutation {
     createCustomerV2(
@@ -355,7 +355,7 @@ QUERY;
         );
 
         $existedEmail = 'customer@example.com';
-        $password = 'test123#';
+        $password = '';
         $firstname = 'John';
         $lastname = 'Smith';
 

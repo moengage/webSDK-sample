@@ -173,25 +173,25 @@ class CreateAccountTest extends TestCase
         return [
             'empty_firstname' => [
                 'customer_data' => ['firstname' => ''],
-                'password' => '_aPassword1',
+                'password' => '',
                 'error_type' =>  Exception::class,
                 'error_message' => ['"%1" is a required value.', 'First Name'],
             ],
             'empty_lastname' => [
                 'customer_data' => ['lastname' => ''],
-                'password' => '_aPassword1',
+                'password' => '',
                 'error_type' =>  Exception::class,
                 'error_message' => ['"%1" is a required value.', 'Last Name'],
             ],
             'empty_email' => [
                 'customer_data' => ['email' => ''],
-                'password' => '_aPassword1',
+                'password' => '',
                 'error_type' => Exception::class,
                 'error_message' => ['The customer email is missing. Enter and try again.'],
             ],
             'invalid_email' => [
                 'customer_data' => ['email' => 'zxczxczxc'],
-                'password' => '_aPassword1',
+                'password' => '',
                 'error_type' => Exception::class,
                 'error_message' => ['"%1" is not a valid email address.', 'Email'],
             ],
@@ -236,7 +236,7 @@ class CreateAccountTest extends TestCase
                     CustomerInterface::WEBSITE_ID => 1,
                     CustomerInterface::STORE_ID => 5,
                 ],
-                'password' => '_aPassword1',
+                'password' => '',
                 'error_type' => LocalizedException::class,
                 'error_message' => [
                     'The store view is not in the associated website.',
@@ -460,12 +460,12 @@ class CreateAccountTest extends TestCase
         unset($expectedCustomerData[CustomerInterface::ID]);
         $customerEntity = $this->populateCustomerEntity($existingCustomer->__toArray(), $customerData);
 
-        $customerAfter = $this->accountManagement->createAccount($customerEntity, '_aPassword1');
+        $customerAfter = $this->accountManagement->createAccount($customerEntity, '');
         $this->assertGreaterThan(0, $customerAfter->getId());
         $this->assertCustomerData($customerAfter, $expectedCustomerData);
         $this->accountManagement->authenticate(
             $customerAfter->getEmail(),
-            '_aPassword1'
+            ''
         );
         $attributesBefore = $this->extensibleDataObjectConverter->toFlatArray(
             $existingCustomer,
@@ -510,7 +510,7 @@ class CreateAccountTest extends TestCase
      */
     public function testCreateCustomerInServiceVsInModel(): void
     {
-        $password = '_aPassword1';
+        $password = '';
         $firstCustomerData = $secondCustomerData = [
             CustomerInterface::EMAIL => 'email@example.com',
             CustomerInterface::FIRSTNAME => 'Tester',
@@ -581,7 +581,7 @@ class CreateAccountTest extends TestCase
         ];
         $newCustomerEntity = $this->populateCustomerEntity($customerData);
 
-        $savedCustomer = $this->accountManagement->createAccount($newCustomerEntity, '_aPassword1');
+        $savedCustomer = $this->accountManagement->createAccount($newCustomerEntity, '');
         $this->assertNotNull($savedCustomer->getId());
         $this->assertCustomerData($savedCustomer, $expectedCustomerData);
         $this->assertEmpty($savedCustomer->getSuffix());
@@ -611,12 +611,12 @@ class CreateAccountTest extends TestCase
         unset($expectedCustomerData[CustomerInterface::ID]);
         $customerEntity = $this->populateCustomerEntity($customerData, [], $customerEntity);
 
-        $customer = $this->accountManagement->createAccount($customerEntity, '_aPassword1');
+        $customer = $this->accountManagement->createAccount($customerEntity, '');
         $this->assertNotEmpty($customer->getId());
         $this->assertCustomerData($customer, $expectedCustomerData);
         $this->accountManagement->authenticate(
             $customer->getEmail(),
-            '_aPassword1'
+            ''
         );
     }
 
@@ -642,7 +642,7 @@ class CreateAccountTest extends TestCase
         $customerEntity->setStoreId($storeId);
         $message = 'A customer with the same email address already exists in an associated website.';
         $this->expectExceptionObject(new InputMismatchException(__($message)));
-        $this->accountManagement->createAccount($customerEntity, '_aPassword1');
+        $this->accountManagement->createAccount($customerEntity, '');
     }
 
     /**

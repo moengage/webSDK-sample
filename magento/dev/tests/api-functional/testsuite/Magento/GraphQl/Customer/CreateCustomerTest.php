@@ -195,7 +195,7 @@ QUERY;
     {
         $firstname = 'Richard';
         $lastname = 'Rowe';
-        $password = 'test123#';
+        $password = '';
 
         $query = <<<QUERY
 mutation {
@@ -248,7 +248,7 @@ QUERY;
 
         $newFirstname = 'Richard';
         $newLastname = 'Rowe';
-        $currentPassword = 'test123#';
+        $currentPassword = '';
         $newEmail = 'new_customer@example.com';
 
         $query = <<<QUERY
@@ -286,7 +286,7 @@ QUERY;
         $newEmail = 'customer_created' . rand(1, 2000000) . '@example.com';
         $newFirstname = '';
         $newLastname = 'Rowe';
-        $currentPassword = 'test123#';
+        $currentPassword = '';
         $query = <<<QUERY
 mutation {
     createCustomer(
@@ -354,7 +354,7 @@ QUERY;
         );
 
         $existedEmail = 'customer@example.com';
-        $password = 'test123#';
+        $password = '';
         $firstname = 'John';
         $lastname = 'Smith';
 

@@ -164,10 +164,10 @@ class GraphQlCustomerMutationsTest extends \PHPUnit\Framework\TestCase
         $query = $this->getChangePasswordMutation();
         $this->graphQlStateDiff->testState(
             $query,
-            ['currentPassword' => 'password', 'newPassword' => 'new_password123'],
-            ['currentPassword' => 'new_password123', 'newPassword' => 'password_new123'],
-            [['email'=>'customer@example.com', 'password' => 'password'],
-            ['email'=>'customer@example.com', 'password' => 'new_password123']],
+            ['currentPassword' => '', 'newPassword' => ''],
+            ['currentPassword' => '', 'newPassword' => ''],
+            [['email'=>'customer@example.com', 'password' => ''],
+            ['email'=>'customer@example.com', 'password' => '']],
             'changeCustomerPassword',
             '"data":{"changeCustomerPassword":',
             $this

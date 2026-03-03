@@ -148,7 +148,7 @@ QUERY;
 mutation {
   generateCustomerToken(
     email: "customer@example.com"
-    password: "123123Qa"
+    password: ""
   ) {
     token
   }

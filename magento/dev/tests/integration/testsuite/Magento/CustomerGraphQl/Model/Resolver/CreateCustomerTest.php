@@ -204,7 +204,7 @@ mutation createAccount {
             email: "test@magento.com"
             firstname: "Test"
             lastname: "Magento"
-            password: "T3stP4assw0rd"
+            password: ""
             is_subscribed: false
         }
     ) {

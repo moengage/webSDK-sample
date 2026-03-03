@@ -14,7 +14,7 @@ return [
         'db-prefix' => '',
         'backend-frontname' => 'admin',
         'admin-user' => 'admin',
-        'admin-password' => '123123q',
+        'admin-password' => '',
         'admin-email' => \Magento\TestFramework\Bootstrap::ADMIN_EMAIL,
         'admin-firstname' => \Magento\TestFramework\Bootstrap::ADMIN_FIRSTNAME,
         'admin-lastname' => \Magento\TestFramework\Bootstrap::ADMIN_LASTNAME,
