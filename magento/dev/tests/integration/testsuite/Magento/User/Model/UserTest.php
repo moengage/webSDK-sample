@@ -382,11 +382,11 @@ class UserTest extends TestCase
         )->setEmail(
             'jdoe@example.com'
         )->setPassword(
-            '123123q'
+            ''
         );
         $this->_model->save();
         $this->assertStringNotContainsString(
-            '123123q',
+            '',
             $this->_model->getPassword(),
             'Password is expected to be hashed'
         );

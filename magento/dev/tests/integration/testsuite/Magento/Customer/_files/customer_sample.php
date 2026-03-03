@@ -20,7 +20,7 @@ $customerData = [
     'email' => 'customer@example.com',
     'default_billing' => 1,
     'default_shipping' => 1,
-    'password' => '123123q',
+    'password' => '',
     'attribute_set_id' => 1,
 ];
 $customer->setData($customerData);

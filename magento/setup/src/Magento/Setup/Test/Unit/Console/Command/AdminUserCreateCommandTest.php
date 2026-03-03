@@ -62,14 +62,14 @@ class AdminUserCreateCommandTest extends TestCase
     {
         $options = [
             '--' . AdminAccount::KEY_USER => 'user',
-            '--' . AdminAccount::KEY_PASSWORD => '123123q',
+            '--' . AdminAccount::KEY_PASSWORD => '',
             '--' . AdminAccount::KEY_EMAIL => 'test@test.com',
             '--' . AdminAccount::KEY_FIRST_NAME => 'John',
             '--' . AdminAccount::KEY_LAST_NAME => 'Doe'
         ];
         $data = [
             AdminAccount::KEY_USER => 'user',
-            AdminAccount::KEY_PASSWORD => '123123q',
+            AdminAccount::KEY_PASSWORD => '',
             AdminAccount::KEY_EMAIL => 'test@test.com',
             AdminAccount::KEY_FIRST_NAME => 'John',
             AdminAccount::KEY_LAST_NAME => 'Doe',
@@ -189,16 +189,16 @@ class AdminUserCreateCommandTest extends TestCase
     {
         return [
             [
-                [null, 'Doe', 'admin', 'test@test.com', '123123q', '123123q'],
+                [null, 'Doe', 'admin', 'test@test.com', '', ''],
                 ['"First Name" is required. Enter and try again.']
             ],
             [
-                ['John', null, null, 'test@test.com', '123123q', '123123q'],
+                ['John', null, null, 'test@test.com', '', ''],
                 ['"User Name" is required. Enter and try again.', '"Last Name" is required. Enter and try again.'],
             ],
-            [['John', 'Doe', 'admin', null, '123123q', '123123q'], ['Please enter a valid email.']],
+            [['John', 'Doe', 'admin', null, '', ''], ['Please enter a valid email.']],
             [
-                ['John', 'Doe', 'admin', 'test', '123123q', '123123q'],
+                ['John', 'Doe', 'admin', 'test', '', ''],
                 ["'test' is not a valid email address in the basic format local-part@hostname"]
             ],
             [
@@ -220,7 +220,7 @@ class AdminUserCreateCommandTest extends TestCase
                 ['John', 'Doe', 'admin', 'test@test.com', '1231231', '1231231'],
                 ['Your password must include both numeric and alphabetic characters.']
             ],
-            [['John', 'Doe', 'admin', 'test@test.com', '123123q', '123123q'], []],
+            [['John', 'Doe', 'admin', 'test@test.com', '', ''], []],
         ];
     }
 }

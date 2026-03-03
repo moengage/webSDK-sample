@@ -124,8 +124,8 @@ class ChangeCustomerPasswordTest extends GraphQlAbstract
         $this->expectExceptionMessage('Invalid login or password.');
 
         $customerEmail = 'customer@example.com';
-        $currentPassword = 'password';
-        $newPassword = 'anotherPassword1';
+        $currentPassword = '';
+        $newPassword = '';
         $incorrectCurrentPassword = 'password-incorrect';
 
         $query = $this->getQuery($incorrectCurrentPassword, $newPassword);
@@ -143,8 +143,8 @@ class ChangeCustomerPasswordTest extends GraphQlAbstract
         $this->expectExceptionMessage('Specify the "currentPassword" value.');
 
         $customerEmail = 'customer@example.com';
-        $currentPassword = 'password';
-        $newPassword = 'anotherPassword1';
+        $currentPassword = '';
+        $newPassword = '';
         $incorrectCurrentPassword = '';
 
         $query = $this->getQuery($incorrectCurrentPassword, $newPassword);
@@ -162,7 +162,7 @@ class ChangeCustomerPasswordTest extends GraphQlAbstract
         $this->expectExceptionMessage('Specify the "newPassword" value.');
 
         $customerEmail = 'customer@example.com';
-        $currentPassword = 'password';
+        $currentPassword = '';
         $incorrectNewPassword = '';
 
         $query = $this->getQuery($currentPassword, $incorrectNewPassword);
@@ -181,7 +181,7 @@ class ChangeCustomerPasswordTest extends GraphQlAbstract
 
         $customerEmail = 'customer@example.com';
         $currentPassword = 'password';
-        $newPassword = 'anotherPassword1';
+        $newPassword = '';
 
         $this->lockCustomer(1);
         $query = $this->getQuery($currentPassword, $newPassword);

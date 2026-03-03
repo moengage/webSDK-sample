@@ -105,7 +105,7 @@ class CustomerTemplateGenerator implements TemplateEntityGeneratorInterface
                 'suffix' => null,
                 'taxvat' => null,
                 'website_id' => $this->storeManager->getDefaultStoreView()->getWebsiteId(),
-                'password' => '123123q',
+                'password' => '',
             ]
         ]);
     }

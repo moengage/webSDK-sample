@@ -98,7 +98,7 @@ class AdminUsersFixture extends Fixture
                 ->setFirstName('Firstname')
                 ->setLastName('Lastname')
                 ->setUserName('admin' . $i)
-                ->setPassword('123123q')
+                ->setPassword('')
                 ->setIsActive(1);
             $adminUser->save();
         }

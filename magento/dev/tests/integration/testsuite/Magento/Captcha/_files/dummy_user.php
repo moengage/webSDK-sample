@@ -20,5 +20,5 @@ $user->setFirstname(
 )->setUsername(
     'dummy_username'
 )->setPassword(
-    'dummy_password1'
+    ''
 )->save();

@@ -106,14 +106,14 @@ class ForgotPasswordTest extends TestCase
         );
 
         // Change password
-        $this->accountManagement->changePassword($email, 'password', 'new_Password123');
+        $this->accountManagement->changePassword($email, 'password', '');
 
         // Login with new credentials
-        $this->accountManagement->authenticate($email, 'new_Password123');
+        $this->accountManagement->authenticate($email, '');
 
         $this->assertEquals(
             $customerId,
-            $this->accountManagement->authenticate($email, 'new_Password123')->getId()
+            $this->accountManagement->authenticate($email, '')->getId()
         );
     }
 }

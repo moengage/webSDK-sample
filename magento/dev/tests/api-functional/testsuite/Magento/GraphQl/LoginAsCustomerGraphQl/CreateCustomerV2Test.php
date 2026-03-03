@@ -134,7 +134,7 @@ QUERY;
     {
         $newFirstname = 'Richard';
         $newLastname = 'Rowe';
-        $currentPassword = 'test123#';
+        $currentPassword = '';
         $newEmail = 'new_customer@example.com';
 
         $query = <<<QUERY
