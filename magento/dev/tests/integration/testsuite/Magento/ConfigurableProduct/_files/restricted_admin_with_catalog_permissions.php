@@ -33,7 +33,7 @@ $user->setData(
         'lastname' => 'lastname',
         'email' => 'admincatalog@example.com',
         'username' => 'admincatalog_user',
-        'password' => 'admincatalog_password1',
+        'password' => '',
         'is_active' => 1,
     ]
 );

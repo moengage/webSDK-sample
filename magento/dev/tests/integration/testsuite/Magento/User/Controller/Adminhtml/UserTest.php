@@ -274,8 +274,8 @@ class UserTest extends \Magento\TestFramework\TestCase\AbstractBackendController
             'firstname' => 'new firstname',
             'lastname' => 'new lastname',
             'email' => 'example@domain.com',
-            'password' => 'password123',
-            'password_confirmation' => 'password123',
+            'password' => '',
+            'password_confirmation' => '',
         ];
 
         $this->getRequest()->setPostValue($data);
@@ -295,8 +295,8 @@ class UserTest extends \Magento\TestFramework\TestCase\AbstractBackendController
             'firstname' => 'new firstname',
             'lastname' => 'new lastname',
             'email' => 'example@domain.unknown',
-            'password' => 'password123',
-            'password_confirmation' => 'password123',
+            'password' => '',
+            'password_confirmation' => '',
         ];
 
         $this->getRequest()->setPostValue($data);
@@ -316,8 +316,8 @@ class UserTest extends \Magento\TestFramework\TestCase\AbstractBackendController
             'firstname' => 'new firstname',
             'lastname' => 'new lastname',
             'email' => 'example@-domain.cim',
-            'password' => 'password123',
-            'password_confirmation' => 'password123',
+            'password' => '',
+            'password_confirmation' => '',
         ];
 
         /**

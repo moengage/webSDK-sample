@@ -153,7 +153,7 @@ class AccountManagementTest extends \PHPUnit\Framework\TestCase
         $this->expectExceptionMessage('Invalid login or password.');
 
         // Customer email and password are pulled from the fixture customer.php
-        $this->accountManagement->authenticate('non_existing_user', '_Password123');
+        $this->accountManagement->authenticate('non_existing_user', '');
     }
 
     /**
@@ -227,7 +227,7 @@ class AccountManagementTest extends \PHPUnit\Framework\TestCase
         $this->expectException(\Magento\Framework\Exception\InvalidEmailOrPasswordException::class);
         $this->expectExceptionMessage('Invalid login or password.');
 
-        $this->accountManagement->changePassword('wrong.email@example.com', '_Password123', '');
+        $this->accountManagement->changePassword('wrong.email@example.com', '', '');
     }
 
     /**

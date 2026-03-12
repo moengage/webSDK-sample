@@ -150,7 +150,7 @@ class UserResetPasswordEmailTest extends AbstractBackendController
         $adminUser->login($username, \Magento\TestFramework\Bootstrap::ADMIN_PASSWORD);
 
         // Change password
-        $adminUser->setPassword('newPassword123');
+        $adminUser->setPassword('');
         $adminUser->save();
 
         /** @var TransportBuilderMock $transportBuilderMock */

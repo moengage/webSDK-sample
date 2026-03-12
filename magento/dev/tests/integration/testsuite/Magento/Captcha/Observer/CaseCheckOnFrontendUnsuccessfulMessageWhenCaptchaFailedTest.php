@@ -90,8 +90,8 @@ class CaseCheckOnFrontendUnsuccessfulMessageWhenCaptchaFailedTest extends Abstra
             'firstname' => 'Firstname',
             'lastname' => 'Lastname',
             'email' => 'dummy@dummy.com',
-            'password' => 'TestPassword123',
-            'password_confirmation' => 'TestPassword123',
+            'password' => '',
+            'password_confirmation' => '',
             'captcha' => ['user_create' => 'wrong_captcha'],
             'form_key' => $formKey->getFormKey(),
         ];

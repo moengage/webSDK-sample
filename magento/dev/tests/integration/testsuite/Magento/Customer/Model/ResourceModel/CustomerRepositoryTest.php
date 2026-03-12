@@ -191,7 +191,7 @@ class CustomerRepositoryTest extends \PHPUnit\Framework\TestCase
         $email = 'savecustomer@example.com';
         $firstName = 'Firstsave';
         $lastName = 'Lastsave';
-        $newPassword = 'newPassword123';
+        $newPassword = '';
         $newPasswordHash = $this->encryptor->getHash($newPassword, true);
         $customerBefore = $this->customerRepository->getById($existingCustomerId);
         $customerData = array_merge($customerBefore->__toArray(), [
@@ -200,7 +200,7 @@ class CustomerRepositoryTest extends \PHPUnit\Framework\TestCase
                 'firstname' => $firstName,
                 'lastname' => $lastName,
                 'created_in' => 'Admin',
-                'password' => 'notsaved',
+                'password' => '',
                 'default_billing' => $defaultBilling,
                 'default_shipping' => $defaultShipping
             ]);
