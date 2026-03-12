@@ -93,7 +93,7 @@ class AdminUserCreateCommandTest extends TestCase
 
         $this->questionHelperMock
             ->method('ask')
-            ->willReturnOnConsecutiveCalls('admin', 'Password123', 'john.doe@example.com', 'John', 'Doe');
+            ->willReturnOnConsecutiveCalls('admin', '', 'john.doe@example.com', 'John', 'Doe');
 
         // We override the standard helper with our mock
         $this->command->getHelperSet()->set($this->questionHelperMock, 'question');
@@ -102,7 +102,7 @@ class AdminUserCreateCommandTest extends TestCase
 
         $expectedData = [
             'admin-user' => 'admin',
-            'admin-password' => 'Password123',
+            'admin-password' => '',
             'admin-email' => 'john.doe@example.com',
             'admin-firstname' => 'John',
             'admin-lastname' => 'Doe',
