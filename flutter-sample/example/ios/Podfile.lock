@@ -1,0 +1,104 @@
+PODS:
+  - Flutter (1.0.0)
+  - MoEngage-iOS-SDK (9.14.0)
+  - moengage_cards_ios (1.1.0):
+    - Flutter
+    - MoEngagePluginCards (~> 1.2.1)
+  - moengage_flutter_ios (1.1.0):
+    - Flutter
+    - MoEngagePluginBase (~> 4.5.1)
+  - moengage_geofence_ios (1.1.0):
+    - Flutter
+    - MoEngagePluginGeofence (~> 2.5.1)
+  - moengage_inbox_ios (1.1.0):
+    - Flutter
+    - MoEngagePluginInbox (~> 2.5.1)
+  - MoEngageCards (4.13.0):
+    - MoEngage-iOS-SDK (< 9.15.0, >= 9.14.0)
+  - MoEngageGeofence (5.13.0):
+    - MoEngage-iOS-SDK (< 9.15.0, >= 9.14.0)
+  - MoEngageInApp (4.13.0):
+    - MoEngage-iOS-SDK (< 9.15.0, >= 9.14.0)
+  - MoEngageInbox (2.13.0):
+    - MoEngage-iOS-SDK (< 9.15.0, >= 9.14.0)
+    - MoEngageRichNotification (< 7.14.0, >= 7.13.0)
+  - MoEngagePluginBase (4.5.1):
+    - MoEngage-iOS-SDK (< 9.15.0, >= 9.14.0)
+    - MoEngageInApp (< 4.14.0, >= 4.13.0)
+  - MoEngagePluginCards (1.2.1):
+    - MoEngageCards (< 4.14.0, >= 4.13.0)
+    - MoEngagePluginBase (< 4.6.0, >= 4.5.1)
+  - MoEngagePluginGeofence (2.5.1):
+    - MoEngageGeofence (< 5.14.0, >= 5.13.0)
+    - MoEngagePluginBase (< 4.6.0, >= 4.5.1)
+  - MoEngagePluginInbox (2.5.1):
+    - MoEngageInbox (< 2.14.0, >= 2.13.0)
+    - MoEngagePluginBase (< 4.6.0, >= 4.5.1)
+  - MoEngageRichNotification (7.13.0):
+    - MoEngage-iOS-SDK (< 9.15.0, >= 9.14.0)
+  - permission_handler_apple (9.1.1):
+    - Flutter
+  - url_launcher (0.0.1):
+    - Flutter
+
+DEPENDENCIES:
+  - Flutter (from `Flutter`)
+  - moengage_cards_ios (from `.symlinks/plugins/moengage_cards_ios/ios`)
+  - moengage_flutter_ios (from `.symlinks/plugins/moengage_flutter_ios/ios`)
+  - moengage_geofence_ios (from `.symlinks/plugins/moengage_geofence_ios/ios`)
+  - moengage_inbox_ios (from `.symlinks/plugins/moengage_inbox_ios/ios`)
+  - MoEngageRichNotification
+  - permission_handler_apple (from `.symlinks/plugins/permission_handler_apple/ios`)
+  - url_launcher (from `.symlinks/plugins/url_launcher/ios`)
+
+SPEC REPOS:
+  trunk:
+    - MoEngage-iOS-SDK
+    - MoEngageCards
+    - MoEngageGeofence
+    - MoEngageInApp
+    - MoEngageInbox
+    - MoEngagePluginBase
+    - MoEngagePluginCards
+    - MoEngagePluginGeofence
+    - MoEngagePluginInbox
+    - MoEngageRichNotification
+
+EXTERNAL SOURCES:
+  Flutter:
+    :path: Flutter
+  moengage_cards_ios:
+    :path: ".symlinks/plugins/moengage_cards_ios/ios"
+  moengage_flutter_ios:
+    :path: ".symlinks/plugins/moengage_flutter_ios/ios"
+  moengage_geofence_ios:
+    :path: ".symlinks/plugins/moengage_geofence_ios/ios"
+  moengage_inbox_ios:
+    :path: ".symlinks/plugins/moengage_inbox_ios/ios"
+  permission_handler_apple:
+    :path: ".symlinks/plugins/permission_handler_apple/ios"
+  url_launcher:
+    :path: ".symlinks/plugins/url_launcher/ios"
+
+SPEC CHECKSUMS:
+  Flutter: f04841e97a9d0b0a8025694d0796dd46242b2854
+  MoEngage-iOS-SDK: fd9507de4c0960ae08874b16e2dfbb27e61e7703
+  moengage_cards_ios: c8779cff7f8471bbdba0d9e0be547f5b33ac6c41
+  moengage_flutter_ios: a06fc2847800e196d04f904a906d4517d311c012
+  moengage_geofence_ios: 0ca6c34c0f6a8dd9ab18130213ff59a473eca0a7
+  moengage_inbox_ios: 9702e5d1ad38683a3a476a15c2d91ba6ad35eb44
+  MoEngageCards: cee2c1036c0717df737f17b196d2ab42a8ec0cf4
+  MoEngageGeofence: 3edba5ea3a366798e3c97777cbf70a7121272c8f
+  MoEngageInApp: 351f9f107d675bb62a7bf90cc22456b2b41ba606
+  MoEngageInbox: 718466210685b88db07594f1d3c5b63106a3e915
+  MoEngagePluginBase: 6e2b9153015ce8bd1e45403225fc4c82a04ce6b0
+  MoEngagePluginCards: 15f137ff190da9708255476ec0f612a2a91e7f1d
+  MoEngagePluginGeofence: 128fef574357a422b659a35b0a1dfd3477a551a7
+  MoEngagePluginInbox: bc8fbd05ec46b1f76747880eb03bc0adebf4fe2e
+  MoEngageRichNotification: 2da207f26a952012f3c9d8e86324bfa320b1e96d
+  permission_handler_apple: e76247795d700c14ea09e3a2d8855d41ee80a2e6
+  url_launcher: 6fef411d543ceb26efce54b05a0a40bfd74cbbef
+
+PODFILE CHECKSUM: 9a759cd70a24bd7515805f773e51e363bc6453dd
+
+COCOAPODS: 1.12.1
