@@ -1,0 +1,175 @@
+.resultsContainer {
+  background: white;
+  border-radius: 8px;
+  padding: 2rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.resultsHeader {
+  margin-bottom: 2rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.resultsHeader h2 {
+  font-size: 1.5rem;
+  color: #003580;
+  margin-bottom: 0.5rem;
+}
+
+.dates {
+  color: #666;
+  font-size: 0.9rem;
+}
+
+.hotelsList {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.hotelCard {
+  display: grid;
+  grid-template-columns: 300px 1fr 200px;
+  gap: 1.5rem;
+  padding: 1.5rem;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.hotelCard:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  border-color: #003580;
+}
+
+.hotelImage {
+  position: relative;
+  border-radius: 8px;
+  overflow: hidden;
+  height: 200px;
+}
+
+.hotelImage img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.ratingBadge {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: #003580;
+  color: white;
+  padding: 0.5rem;
+  border-radius: 4px;
+  font-weight: 600;
+}
+
+.ratingValue {
+  font-size: 1rem;
+}
+
+.hotelInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.hotelName {
+  font-size: 1.25rem;
+  color: #003580;
+  margin: 0;
+  font-weight: 600;
+}
+
+.hotelLocation {
+  color: #666;
+  font-size: 0.9rem;
+}
+
+.hotelDescription {
+  color: #333;
+  font-size: 0.9rem;
+  line-height: 1.5;
+  margin: 0.5rem 0;
+}
+
+.amenities {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: auto;
+}
+
+.amenity {
+  background: #f0f0f0;
+  padding: 0.25rem 0.75rem;
+  border-radius: 4px;
+  font-size: 0.85rem;
+  color: #333;
+}
+
+.hotelPrice {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+.priceContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.25rem;
+}
+
+.priceLabel {
+  font-size: 0.85rem;
+  color: #666;
+}
+
+.price {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #003580;
+}
+
+.totalPrice {
+  font-size: 0.9rem;
+  color: #666;
+}
+
+.selectButton {
+  background: #003580;
+  color: white;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 4px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+  width: 100%;
+}
+
+.selectButton:hover {
+  background: #004494;
+}
+
+@media (max-width: 1024px) {
+  .hotelCard {
+    grid-template-columns: 1fr;
+  }
+
+  .hotelImage {
+    height: 250px;
+  }
+
+  .hotelPrice {
+    align-items: stretch;
+  }
+}
+

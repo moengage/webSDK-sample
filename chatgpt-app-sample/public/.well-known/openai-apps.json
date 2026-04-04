@@ -1,0 +1,59 @@
+{
+  "name": "MoEngage Sample App",
+  "description": "Sample application with MoEngage WebSDK integration for ChatGPT Apps",
+  "version": "1.0.0",
+  "author": "MoEngage",
+  "homepage_url": "https://your-domain.com",
+  "widgetCSP": {
+    "connect_domains": [
+      "https://api-01.moengage.com",
+      "https://api-02.moengage.com",
+      "https://api-03.moengage.com",
+      "https://api-04.moengage.com",
+      "https://api-05.moengage.com",
+      "https://api-06.moengage.com",
+      "https://api-07.moengage.com",
+      "https://api-08.moengage.com",
+      "https://api-09.moengage.com",
+      "https://api-10.moengage.com",
+      "https://api-11.moengage.com",
+      "https://api-12.moengage.com",
+      "https://api-13.moengage.com",
+      "https://api-14.moengage.com",
+      "https://api-15.moengage.com",
+      "https://api-16.moengage.com",
+      "https://api-17.moengage.com",
+      "https://api-18.moengage.com",
+      "https://api-19.moengage.com",
+      "https://api-20.moengage.com"
+    ],
+    "resource_domains": [
+      "https://cdn.moengage.com",
+      "https://sdk-01.moengage.com",
+      "https://sdk-02.moengage.com",
+      "https://sdk-03.moengage.com",
+      "https://sdk-04.moengage.com",
+      "https://sdk-05.moengage.com",
+      "https://sdk-06.moengage.com",
+      "https://sdk-07.moengage.com",
+      "https://sdk-08.moengage.com",
+      "https://sdk-09.moengage.com",
+      "https://sdk-10.moengage.com",
+      "https://sdk-11.moengage.com",
+      "https://sdk-12.moengage.com",
+      "https://sdk-13.moengage.com",
+      "https://sdk-14.moengage.com",
+      "https://sdk-15.moengage.com",
+      "https://sdk-16.moengage.com",
+      "https://sdk-17.moengage.com",
+      "https://sdk-18.moengage.com",
+      "https://sdk-19.moengage.com",
+      "https://sdk-20.moengage.com"
+    ]
+  },
+  "permissions": [
+    "user_data",
+    "analytics"
+  ]
+}
+
