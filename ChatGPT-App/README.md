@@ -1,43 +1,43 @@
-# Foodie — ChatGPT Food Delivery App
+# ChatGPT-App — Food Delivery with MoEngage Integration
 
-A production-ready **ChatGPT App** using the Model Context Protocol (MCP), with **MoEngage WebSDK** integration for analytics and engagement tracking. Features restaurant browsing, menu viewing, shopping cart, order placement, and real-time event tracking.
+A production-ready **ChatGPT App** using the Model Context Protocol (MCP) with **MoEngage WebSDK** integration for analytics and engagement tracking.
 
-| Metadata | Value |
-|----------|-------|
-| **Status** | ✅ Ready to Demo |
-| **Version** | 2.0.0 |
-| **Last Updated** | April 14, 2026 |
-| **Default Data** | Mock Data (for testing) |
+**Features:**
+- ✅ Restaurant browsing with filters and search
+- ✅ Menu viewing and food item selection
+- ✅ Shopping cart management
+- ✅ Order placement and tracking
+- ✅ Real-time MoEngage event tracking
+- ✅ Works in ChatGPT and as standalone website
+- ✅ ChatGPT sandbox-safe (inlined CSS/JS)
 
 ---
 
-## ⚡ Quick Start (5 minutes)
+## ⚡ Quick Start (2 minutes)
 
 ```bash
-cd ChatGPT-App
 npm install
 npm run build
 npm run dev
-# Visit: http://localhost:8787/widget
 ```
 
-**That's it!** The app comes with:
-- ✅ **Mock MoEngage credentials** (no signup required)
-- ✅ **Test restaurant & menu data** (ready to explore)
-- ✅ **Pre-configured for demo mode** (click to run)
+Then open **http://localhost:8787/widget** in your browser.
 
-### Using Real MoEngage Credentials
+**Pre-configured with:**
+- ✅ Mock MoEngage credentials (demo mode)
+- ✅ Test restaurant & menu data
+- ✅ Ready to explore immediately
 
-Simply update `.env` with your actual MoEngage App ID and Data Center. See **Step 2** in setup guide below.
+To use real MoEngage credentials, update `.env` with your App ID.
 
-### Features
-- ✅ **Dual-Mode**: Works both inside ChatGPT and as a standalone website  
-- ✅ **MCP Integration**: Full Model Context Protocol support for ChatGPT tool calling
-- ✅ **REST API**: Standalone HTTP API for website mode (`/api/*` endpoints)
-- ✅ **MoEngage Analytics**: Real-time event tracking, user identification, and content cards
-- ✅ **Hybrid State**: Server-side cart state persisted across both modes
-- ✅ **ChatGPT Sandbox Safe**: CSS/JS inlined to work in restricted iframe
-- ✅ **MCP→MoEngage Bridge**: MCP tools can invoke MoEngage SDK methods directly
+### Key Features
+- **Dual-Mode**: Works in ChatGPT (MCP) and standalone browser
+- **MCP Integration**: Full Model Context Protocol with 12 tools
+- **REST API**: Standalone mode uses `/api/*` endpoints
+- **MoEngage Analytics**: 11+ tracked events for user behavior
+- **Persistent Cart**: Server-side cart state across requests
+- **ChatGPT Safe**: Inlined CSS/JS for sandbox compatibility
+- **Bridge Architecture**: MCP tools directly call MoEngage SDK methods
 
 ## MoEngage WebSDK Integration
 
@@ -787,21 +787,25 @@ If not:
 
 ---
 
-## Related Pages
+## Tech Stack
 
-- **[POC/00_INDEX.md](../POC/00_INDEX.md)** — POC documentation hub (Confluence format)
-- **[POC/04_WEBSDK_INTEGRATION.md](../POC/04_WEBSDK_INTEGRATION.md)** — WebSDK setup guide with code
-- **[MOENGAGE_INTEGRATION.md](./MOENGAGE_INTEGRATION.md)** — Complete MoEngage integration guide
-- **[CLAUDE.md](./CLAUDE.md)** — Development conventions and patterns
-- **[../TECHNICAL_DESIGN_DOC.md](../TECHNICAL_DESIGN_DOC.md)** — Complete technical specification (72 KB)
-- **[../DOCUMENTATION_INDEX.md](../DOCUMENTATION_INDEX.md)** — All documentation index
+- **Runtime**: Node.js 18+ with ES modules
+- **MCP**: `@modelcontextprotocol/sdk` & `@modelcontextprotocol/ext-apps`
+- **Frontend**: React 19 + Vanilla CSS
+- **Bundler**: esbuild (for ChatGPT sandbox compatibility)
+- **Analytics**: MoEngage WebSDK
+- **Schema**: Zod for validation
+
+## Commands
+
+```bash
+npm install      # Install dependencies
+npm run build    # Bundle React + validate ChatGPT compatibility
+npm run dev      # Start with auto-reload on file changes
+npm start        # Production server
+npm run validate # Check ChatGPT sandbox compatibility
+```
 
 ---
 
-> 💡 **For Confluence Format:** Start with [POC/00_INDEX.md](../POC/00_INDEX.md) for structured, Confluence-style documentation.
-
----
-
-**Last Updated:** April 14, 2026  
-**Version:** 2.0.0  
-**Status:** ✅ Production Ready
+**Version:** 2.0.0 | **Status:** ✅ Production Ready
