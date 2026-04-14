@@ -1,0 +1,30 @@
+/**
+ * widget/styles/common/search.css
+ * Search input component styles.
+ */
+
+/* ── Search Box ── */
+.search-box {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 12px;
+  padding: 10px 14px;
+  backdrop-filter: blur(4px);
+}
+.search-box input {
+  border: none;
+  background: transparent;
+  color: white;
+  font-size: 0.95rem;
+  width: 100%;
+  outline: none;
+}
+.search-box input::placeholder {
+  color: rgba(255, 255, 255, 0.6);
+}
+.search-box .search-icon {
+  opacity: 0.7;
+  font-size: 1rem;
+}

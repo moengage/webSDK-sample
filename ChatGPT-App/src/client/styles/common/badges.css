@@ -1,0 +1,50 @@
+/**
+ * widget/styles/common/badges.css
+ * Badge and indicator styles (veg/non-veg, rating badge).
+ */
+
+/* ── Veg / Non-veg Badges ── */
+.veg-badge,
+.nonveg-badge {
+  display: inline-flex;
+  width: 14px;
+  height: 14px;
+  border-radius: 3px;
+  align-items: center;
+  justify-content: center;
+  margin-right: 4px;
+  vertical-align: middle;
+}
+.veg-badge {
+  border: 1.5px solid var(--green);
+}
+.veg-badge::after {
+  content: "";
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--green);
+}
+.nonveg-badge {
+  border: 1.5px solid var(--primary);
+}
+.nonveg-badge::after {
+  content: "";
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--primary);
+}
+
+/* ── Rating Badge ── */
+.rating {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  background: var(--green);
+  color: white;
+  padding: 2px 6px;
+  border-radius: 5px;
+  font-size: 0.72rem;
+  font-weight: 700;
+}

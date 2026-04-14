@@ -1,0 +1,26 @@
+/**
+ * widget/styles/components/header.css
+ * Header and navigation bar styles.
+ */
+
+/* ── Header ── */
+.header {
+  background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+  color: var(--white);
+  padding: 20px 20px 24px;
+  border-radius: 0 0 24px 24px;
+}
+.header-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+.header-top .logo {
+  font-size: 1.5rem;
+  font-weight: 800;
+  letter-spacing: -0.5px;
+}
+.header-top .logo span {
+  color: var(--accent);
+}

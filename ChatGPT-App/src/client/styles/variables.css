@@ -1,0 +1,32 @@
+/**
+ * widget/styles/variables.css
+ * ────────────────────────────────────────────────────────────────────────────
+ * Design tokens and CSS custom properties (variables).
+ * Used across all components for consistent theming.
+ * ────────────────────────────────────────────────────────────────────────────
+ */
+
+:root {
+  --primary: #e23744;
+  --primary-dark: #cb202d;
+  --primary-light: #fff0f1;
+  --accent: #fc8019;
+  --accent-light: #fff5eb;
+  --green: #48c479;
+  --green-light: #e8f8ef;
+  --dark: #1c1c2b;
+  --gray-900: #2d2d3f;
+  --gray-700: #4a4a5a;
+  --gray-500: #7e808c;
+  --gray-300: #b5b5c3;
+  --gray-200: #d4d5d9;
+  --gray-100: #f0f0f5;
+  --gray-50: #f8f8fc;
+  --white: #ffffff;
+  --radius: 14px;
+  --radius-sm: 10px;
+  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.06);
+  --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.12);
+  --font: "Inter", system-ui, -apple-system, sans-serif;
+}

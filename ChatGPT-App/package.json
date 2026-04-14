@@ -1,0 +1,26 @@
+{
+  "name": "moe-sample-chatgpt-app",
+  "version": "2.0.0",
+  "type": "module",
+  "description": "MoEngage Sample ChatGPT App — food delivery demo with MoEngage WebSDK integration",
+  "scripts": {
+    "start": "node --env-file=.env server.js",
+    "dev": "node --env-file=.env --watch server.js",
+    "build": "esbuild src/client/index.jsx --bundle --format=esm --outfile=public/widget.js --jsx=automatic --jsx-import-source=react && npm run validate",
+    "build:watch": "esbuild src/client/index.jsx --bundle --format=esm --outfile=public/widget.js --jsx=automatic --jsx-import-source=react --watch",
+    "validate": "node scripts/validate-widget.js"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.20.2",
+    "@modelcontextprotocol/ext-apps": "^1.0.1",
+    "@moengage/web-sdk": "^2.73.0",
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0",
+    "zod": "^3.25.76"
+  },
+  "devDependencies": {
+    "@types/react": "^19.2.2",
+    "@types/react-dom": "^19.2.2",
+    "esbuild": "^0.25.11"
+  }
+}
