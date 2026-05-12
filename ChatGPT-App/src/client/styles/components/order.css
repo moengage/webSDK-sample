@@ -1,0 +1,129 @@
+/**
+ * widget/styles/components/order.css
+ * Order confirmation and tracking styles.
+ */
+
+/* ── Order Confirmation View ── */
+.order-confirmation {
+  display: none;
+  text-align: center;
+  padding: 40px 20px;
+}
+.order-confirmation.active {
+  display: block;
+}
+.order-confirmation .check-icon {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  background: var(--green-light);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  margin: 0 auto 16px;
+}
+.order-confirmation h2 {
+  font-size: 1.3rem;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+.order-confirmation p {
+  font-size: 0.88rem;
+  color: var(--gray-500);
+  margin-bottom: 24px;
+}
+
+/* ── Order ID ── */
+.order-id {
+  display: inline-block;
+  background: var(--gray-100);
+  padding: 8px 20px;
+  border-radius: 10px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--gray-700);
+  margin-bottom: 24px;
+}
+
+/* ── Tracking Animation ── */
+.track-anim {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-bottom: 24px;
+}
+.track-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--primary);
+  animation: pulse 1.4s infinite ease-in-out;
+}
+.track-dot:nth-child(2) {
+  animation-delay: 0.2s;
+}
+.track-dot:nth-child(3) {
+  animation-delay: 0.4s;
+}
+.track-dot:nth-child(4) {
+  animation-delay: 0.6s;
+}
+@keyframes pulse {
+  0%,
+  100% {
+    transform: scale(0.6);
+    opacity: 0.4;
+  }
+  50% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* ── Track Status ── */
+.track-status {
+  background: var(--white);
+  border-radius: var(--radius);
+  padding: 16px;
+  box-shadow: var(--shadow-sm);
+  text-align: left;
+  border: 1px solid var(--gray-100);
+}
+
+/* ── Track Step ── */
+.track-step {
+  display: flex;
+  gap: 12px;
+  padding: 8px 0;
+  align-items: center;
+}
+.track-step-icon {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.85rem;
+  flex-shrink: 0;
+}
+.track-step-icon.done {
+  background: var(--green-light);
+}
+.track-step-icon.pending {
+  background: var(--gray-100);
+}
+
+/* ── Track Step Text ── */
+.track-step-text {
+  font-size: 0.85rem;
+  font-weight: 500;
+}
+.track-step-text.done {
+  color: var(--green);
+  font-weight: 600;
+}
+.track-step-text.pending {
+  color: var(--gray-300);
+}

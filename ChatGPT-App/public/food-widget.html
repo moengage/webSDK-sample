@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MoEngage Sample ChatGPT App</title>
+    <!-- ═══════════════════════════════════════════
+         INLINED STYLES (injected by server at startup)
+         ═══════════════════════════════════════════ -->
+    <style type="text/css">
+{{INLINE_CSS}}
+    </style>
+  </head>
+
+  <body>
+    <!-- React root -->
+    <div id="app"></div>
+
+    <!-- MoEngage Content Cards placeholder -->
+    <div id="moe_inbox"></div>
+
+    <!-- ═══════════════════════════════════════════
+         MOENGAGE CONFIG (passed to React hook)
+         ═══════════════════════════════════════════ -->
+    <script type="text/javascript">
+      // Store config in window globals for React hook to access
+      (function() {
+        window.__MOENGAGE_APP_ID__ = 'PLACEHOLDER_APP_ID';
+        window.__MOENGAGE_DATA_CENTER__ = 'PLACEHOLDER_DATA_CENTER';
+      })();
+    </script>
+
+    <!-- React application bundle (inlined from widget/index.jsx) -->
+    <script>
+{{INLINE_JS}}
+    </script>
+  </body>
+</html>

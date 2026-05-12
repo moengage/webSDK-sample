@@ -1,0 +1,51 @@
+/**
+ * widget/styles/components/floating-cart.css
+ * Floating cart bar styles.
+ */
+
+/* ── Floating Cart Bar ── */
+.floating-cart {
+  display: none;
+  position: fixed;
+  bottom: 16px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: calc(100% - 40px);
+  max-width: 440px;
+  background: var(--green);
+  color: white;
+  border-radius: var(--radius);
+  padding: 14px 20px;
+  box-shadow: 0 8px 24px rgba(72, 196, 121, 0.4);
+  cursor: pointer;
+  z-index: 100;
+  transition: all 0.3s;
+}
+.floating-cart:hover {
+  transform: translateX(-50%) translateY(-2px);
+}
+.floating-cart.visible {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* ── Floating Cart Left ── */
+.floating-cart-left {
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+.floating-cart-left small {
+  font-size: 0.75rem;
+  opacity: 0.9;
+  display: block;
+}
+
+/* ── Floating Cart Right ── */
+.floating-cart-right {
+  font-weight: 700;
+  font-size: 0.95rem;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}

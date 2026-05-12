@@ -1,0 +1,38 @@
+/**
+ * widget/styles/common/tabs.css
+ * Tab/navigation button styles.
+ */
+
+/* ── Nav Tabs ── */
+.nav-tabs {
+  display: flex;
+  gap: 6px;
+  padding: 16px 20px 0;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+.nav-tabs::-webkit-scrollbar {
+  display: none;
+}
+.nav-tab {
+  flex-shrink: 0;
+  padding: 8px 18px;
+  border-radius: 20px;
+  border: 1.5px solid var(--gray-200);
+  background: var(--white);
+  color: var(--gray-700);
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+  white-space: nowrap;
+}
+.nav-tab:hover {
+  border-color: var(--primary);
+  color: var(--primary);
+}
+.nav-tab.active {
+  background: var(--primary);
+  color: white;
+  border-color: var(--primary);
+}

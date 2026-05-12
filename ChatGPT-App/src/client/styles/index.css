@@ -1,0 +1,28 @@
+/**
+ * widget/styles/index.css
+ * ────────────────────────────────────────────────────────────────────────────
+ * Main stylesheet entry point — imports all component and utility styles.
+ * ────────────────────────────────────────────────────────────────────────────
+ */
+
+/* Design tokens */
+@import './variables.css';
+
+/* Base styles (reset, body, layout) */
+@import './base.css';
+
+/* Common component styles */
+@import './common/badges.css';
+@import './common/buttons.css';
+@import './common/search.css';
+@import './common/sections.css';
+@import './common/tabs.css';
+
+/* View & component-specific styles */
+@import './components/header.css';
+@import './components/home.css';
+@import './components/restaurant-card.css';
+@import './components/menu.css';
+@import './components/cart.css';
+@import './components/order.css';
+@import './components/floating-cart.css';

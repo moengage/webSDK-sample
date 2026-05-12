@@ -1,0 +1,33 @@
+# Environment
+.env
+.env.local
+.env.*.local
+
+# Node modules
+node_modules/
+package-lock.json
+
+# Build artifacts
+dist/
+build/
+*.tsbuildinfo
+
+# IDE & Editor
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Documentation (internal dev notes)
+CLAUDE.md
+
+# Logs
+*.log
+npm-debug.log*
+yarn-error.log*
+
+# OS
+.AppleDouble
+.LSOverride

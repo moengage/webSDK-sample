@@ -1,0 +1,31 @@
+/**
+ * widget/styles/base.css
+ * ────────────────────────────────────────────────────────────────────────────
+ * Reset, base element styles, and app layout container.
+ * ────────────────────────────────────────────────────────────────────────────
+ */
+
+/* ── Reset ── */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+html,
+body {
+  width: 100%;
+  min-height: 100%;
+}
+body {
+  font-family: var(--font);
+  background: var(--gray-50);
+  color: var(--dark);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ── App Layout ── */
+.app {
+  max-width: 480px;
+  margin: 0 auto;
+  min-height: 100vh;
+}

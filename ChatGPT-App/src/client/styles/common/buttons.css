@@ -1,0 +1,119 @@
+/**
+ * widget/styles/common/buttons.css
+ * Button component styles across the app.
+ */
+
+/* ── Cart Button & Badge ── */
+.cart-btn {
+  position: relative;
+  background: rgba(255, 255, 255, 0.2);
+  border: none;
+  border-radius: 12px;
+  padding: 10px 14px;
+  color: white;
+  font-size: 1.1rem;
+  cursor: pointer;
+  backdrop-filter: blur(4px);
+  transition: background 0.2s;
+}
+.cart-btn:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+.cart-badge {
+  position: absolute;
+  top: -4px;
+  right: -4px;
+  background: var(--accent);
+  color: white;
+  font-size: 0.65rem;
+  font-weight: 700;
+  min-width: 18px;
+  height: 18px;
+  border-radius: 9px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  display: none;
+}
+.cart-badge.visible {
+  display: flex;
+}
+
+/* ── Back Button ── */
+.back-btn {
+  border: none;
+  background: var(--gray-100);
+  border-radius: 10px;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background 0.2s;
+}
+.back-btn:hover {
+  background: var(--gray-200);
+}
+
+/* ── Add Button ── */
+.add-btn {
+  border: 1.5px solid var(--primary);
+  background: var(--primary-light);
+  color: var(--primary);
+  font-weight: 700;
+  font-size: 0.8rem;
+  padding: 8px 20px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.2s;
+  white-space: nowrap;
+}
+.add-btn:hover {
+  background: var(--primary);
+  color: white;
+}
+.add-btn.added {
+  background: var(--green);
+  color: white;
+  border-color: var(--green);
+}
+
+/* ── Place Order Button ── */
+.place-order-btn {
+  width: 100%;
+  padding: 16px;
+  margin-top: 16px;
+  background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+  color: white;
+  border: none;
+  border-radius: var(--radius);
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s;
+  box-shadow: 0 4px 12px rgba(226, 55, 68, 0.3);
+}
+.place-order-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 16px rgba(226, 55, 68, 0.4);
+}
+
+/* ── New Order Button ── */
+.new-order-btn {
+  display: inline-block;
+  margin-top: 20px;
+  padding: 12px 32px;
+  background: var(--primary);
+  color: white;
+  border: none;
+  border-radius: var(--radius-sm);
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.new-order-btn:hover {
+  background: var(--primary-dark);
+}
