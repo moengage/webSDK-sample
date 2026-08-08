@@ -1,0 +1,31 @@
+# Environment
+.env
+.env.local
+.env.*.local
+
+# Node modules
+node_modules/
+package-lock.json
+
+# Build artifacts
+public/widget.js
+public/widget.css
+dist/
+build/
+
+# IDE & Editor
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Logs
+*.log
+npm-debug.log*
+yarn-error.log*
+
+# OS
+.AppleDouble
+.LSOverride

@@ -1,0 +1,36 @@
+export const config = {
+  port: Number(process.env.PORT ?? 8788),
+  publicUrl: process.env.PUBLIC_URL || `http://localhost:${Number(process.env.PORT ?? 8788)}`,
+  mcpPath: "/mcp",
+  moengage: {
+    appId: process.env.MOENGAGE_APP_ID || "REPLACE_WITH_YOUR_APP_ID",
+    dataCenter: process.env.MOENGAGE_DATA_CENTER || "DC_3",
+  },
+  moengageCsp: {
+    connect: [
+      "https://cdn.moengage.com",
+      "https://js.moengage.com",
+      "https://sdk-01.moengage.com",
+      "https://sdk-02.moengage.com",
+      "https://sdk-03.moengage.com",
+      "https://sdk-04.moengage.com",
+      "https://sdk-05.moengage.com",
+      "https://sdk-06.moengage.com",
+      "https://sdk-100.moengage.com",
+      "https://sdk-101.moengage.com",
+      "https://api.moengage.com",
+      "https://app-cdn.moengage.com",
+      "https://image-ap1.moengage.com",
+      "https://image-eu1.moengage.com",
+      process.env.PUBLIC_URL ? new URL(process.env.PUBLIC_URL).origin : "http://localhost:8788",
+    ],
+    resource: [
+      "https://cdn.moengage.com",
+      "https://js.moengage.com",
+      "https://app-cdn.moengage.com",
+      "https://image-ap1.moengage.com",
+      "https://image-eu1.moengage.com",
+      process.env.PUBLIC_URL ? new URL(process.env.PUBLIC_URL).origin : "http://localhost:8788",
+    ],
+  },
+};
