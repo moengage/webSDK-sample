@@ -1,5 +1,5 @@
 console.log('This is a popup!');
 window.Moengage = moe({
-  app_id: 'XXXXXXXXXXXXXXXX',
+  appId: 'XXXXXXXXXXXXXXXX',
   debug_logs: 0
 });
