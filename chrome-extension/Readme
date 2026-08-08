@@ -1,0 +1,11 @@
+WebSDK and Web Push in Chrome Exension
+1. Make sure to integrate webSDK to your chrome extension
+    - Download the latest code from https://cdn.moengage.com/webpush/moe_webSdk.min.latest.js
+    - Create a new file name webSDK.min.js and save code inside it.
+    - Inject that script to your extension project.
+    - Initialize SDK after webSDK.min.js script exection as shared on popup.js
+2. To use Web Push notification 
+    - For Web Push notification manifest_version: 3 is required. 
+    - SDK required ["notifications", "storage"] Permission which you have to add in you manifest.json file.
+    - Make sure to download the moengage chrome extesnion service worker code from  https://cdn.moengage.com/webpush/beta/serviceworker_chrome_ext_cdn.js.
+    - Use that code inside your background.js file.
