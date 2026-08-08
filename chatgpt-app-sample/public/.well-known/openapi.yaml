@@ -1,0 +1,21 @@
+openapi: 3.0.0
+info:
+  title: Hotel Booking API
+  version: 1.0.0
+  description: API for searching and booking hotels through ChatGPT
+servers:
+  - url: https://your-app.vercel.app
+    description: Production server
+paths:
+  /:
+    get:
+      summary: Hotel booking interface
+      description: Main interface for hotel search and booking
+      responses:
+        '200':
+          description: HTML page with hotel booking interface
+          content:
+            text/html:
+              schema:
+                type: string
+

@@ -1,0 +1,13 @@
+{
+  "version": 2,
+  "buildCommand": "npm run build",
+  "devCommand": "npm run dev",
+  "installCommand": "npm install",
+  "framework": "nextjs",
+  "regions": ["iad1"],
+  "env": {
+    "NEXT_PUBLIC_MOENGAGE_DATACENTER": "@moengage-datacenter",
+    "NEXT_PUBLIC_MOENGAGE_APP_ID": "@moengage-app-id"
+  }
+}
+

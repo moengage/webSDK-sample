@@ -1,0 +1,18 @@
+{
+  "schema_version": "v1",
+  "name_for_human": "Hotel Booking",
+  "name_for_model": "hotel_booking",
+  "description_for_human": "Search and book hotels with real-time availability and pricing. Powered by MoEngage analytics.",
+  "description_for_model": "A hotel booking service that allows users to search for hotels by destination, check-in/check-out dates, and number of guests. Users can view hotel details, compare prices, and complete bookings. All interactions are tracked via MoEngage for analytics.",
+  "auth": {
+    "type": "none"
+  },
+  "api": {
+    "type": "openapi",
+    "url": "https://your-app.vercel.app/.well-known/openapi.yaml"
+  },
+  "logo_url": "https://your-app.vercel.app/logo.png",
+  "contact_email": "support@example.com",
+  "legal_info_url": "https://your-app.vercel.app/legal"
+}
+
