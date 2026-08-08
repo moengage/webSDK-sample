@@ -1,0 +1,120 @@
+def localProperties = new Properties()
+def localPropertiesFile = rootProject.file('local.properties')
+if (localPropertiesFile.exists()) {
+  localPropertiesFile.withReader('UTF-8') { reader -> localProperties.load(reader)
+  }
+}
+
+def flutterRoot = localProperties.getProperty('flutter.sdk')
+if (flutterRoot == null) {
+  throw new GradleException(
+      "Flutter SDK not found. Define location with flutter.sdk in the local.properties file.")
+}
+
+def flutterVersionCode = localProperties.getProperty('flutter.versionCode')
+if (flutterVersionCode == null) {
+  flutterVersionCode = '1'
+}
+
+def flutterVersionName = localProperties.getProperty('flutter.versionName')
+if (flutterVersionName == null) {
+  flutterVersionName = '1.0'
+}
+
+apply plugin: 'com.android.application'
+apply from: "$flutterRoot/packages/flutter_tools/gradle/flutter.gradle"
+apply plugin: 'com.huawei.agconnect'
+apply plugin: 'kotlin-android'
+apply plugin: 'com.google.gms.google-services'
+apply plugin: 'kotlin-kapt'
+
+android {
+  compileSdk 33
+  namespace "com.moengage.sampleapp"
+
+  sourceSets {
+    main.java.srcDirs += 'src/main/kotlin'
+  }
+
+  lintOptions {
+    disable 'InvalidPackage'
+  }
+
+  defaultConfig {
+    applicationId "com.moengage.sampleapp"
+    minSdk 21
+    targetSdk 33
+    versionCode flutterVersionCode.toInteger()
+    versionName flutterVersionName
+    testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
+  }
+
+  signingConfigs {
+    Properties properties = new Properties()
+    properties.load(file('keystore.properties').newDataInputStream())
+    release {
+      storeFile file(properties.getProperty("storeFilePath"))
+      storePassword properties.getProperty("storePassword")
+      keyAlias properties.getProperty("keyAlias")
+      keyPassword properties.getProperty("keyPassword")
+    }
+    debug {
+      storeFile file(properties.getProperty("storeFilePath"))
+      storePassword properties.getProperty("storePassword")
+      keyAlias properties.getProperty("keyAlias")
+      keyPassword properties.getProperty("keyPassword")
+    }
+  }
+
+  buildTypes {
+    release {
+      signingConfig signingConfigs.release
+    }
+    debug {
+      signingConfig signingConfigs.debug
+    }
+  }
+
+  repositories {
+    flatDir {
+      dirs 'libs'
+    }
+  }
+  compileOptions {
+    sourceCompatibility 1.8
+    targetCompatibility 1.8
+  }
+
+  kotlinOptions {
+    jvmTarget = '1.8'
+  }
+}
+
+flutter {
+  source '../..'
+}
+
+dependencies {
+  implementation fileTree(dir: 'libs', include: ['*.jar', "*.aar"])
+  implementation(appLibs.fcm)
+  implementation(appLibs.lifecycleOwner)
+  implementation(appLibs.adIdentifier)
+  implementation(appLibs.hmsPush)
+  implementation(appLibs.kotlin)
+  implementation(appLibs.playLocation)
+  implementation(appLibs.glideCore)
+  kapt(appLibs.glideCore)
+  implementation(moengage.core)
+  implementation(moengage.inapp)
+  implementation(moengage.cardsCore)
+  implementation(moengage.pushKit)
+  implementation(moengage.richNotification)
+  implementation(moengage.inboxCore)
+  implementation(moengage.geofence)
+  implementation(moengage.pushAmpPlus)
+  testImplementation(appLibs.junit)
+  androidTestImplementation(appLibs.androidJUnit)
+  androidTestImplementation(appLibs.expresso)
+}
+
+apply plugin: 'com.google.gms.google-services'

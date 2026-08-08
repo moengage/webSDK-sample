@@ -1,0 +1,32 @@
+include ':app'
+
+def flutterProjectRoot = rootProject.projectDir.parentFile.toPath()
+
+def plugins = new Properties()
+def pluginsFile = new File(flutterProjectRoot.toFile(), '.flutter-plugins')
+if (pluginsFile.exists()) {
+    pluginsFile.withReader('UTF-8') { reader -> plugins.load(reader) }
+}
+
+plugins.each { name, path ->
+    def pluginDirectory = flutterProjectRoot.resolve(path).resolve('android').toFile()
+    include ":$name"
+    project(":$name").projectDir = pluginDirectory
+}
+
+dependencyResolutionManagement {
+    repositories {
+        google()
+        mavenCentral()
+    }
+    versionCatalogs {
+        libs {
+            create("moengage") {
+                from("com.moengage:android-dependency-catalog:3.2.1")
+            }
+            create("appLibs") {
+                from(files("../android/gradle/appLibs.versions.toml"))
+            }
+        }
+    }
+}
