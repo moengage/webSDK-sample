@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+    <title>Sample Web Personalization - V2 SDK Integration</title>
+    <link rel="preconnect" href="https://cdn.moengage.com/" crossorigin />
+    <link rel="dns-prefetch" href="https://cdn.moengage.com/" />
+    <link rel="preconnect" href="https://sdk-0X.moengage.com/" crossorigin />
+    <link rel="dns-prefetch" href="https://sdk-0X.moengage.com/" />
+    <script src="https://cdn.moengage.com/webpush/moe_webSdk_webp.min.latest.js?app_id=XXXXYYYYZZZZ111122223333&cluster=DC_X"></script>
+    <!-- 
+      XXXXYYYYZZZZ111122223333: Your App id
+      DC_X: Your cluster DC wise
+      sdk-0X: Your cluster SDK wise
+    -->
+    <script type="text/javascript">
+      (function(i, s, o, g, r, a, m, n) {
+        i.moengage_object = r;
+        t = {};
+        q = function(f) {
+          return function() {
+            (i.moengage_q = i.moengage_q || []).push({ f: f, a: arguments });
+          };
+        };
+        (f = [
+          "track_event",
+          "add_user_attribute",
+          "add_first_name",
+          "add_last_name",
+          "add_email",
+          "add_mobile",
+          "add_user_name",
+          "add_gender",
+          "add_birthday",
+          "destroy_session",
+          "add_unique_user_id",
+          "moe_events",
+          "call_web_push",
+          "track",
+          "location_type_attribute",
+        ]),
+          (h = { onsite: ["getData", "registerCallback"] });
+        for (k in f) {
+          t[f[k]] = q(f[k]);
+        }
+        for (k in h)
+          for (l in h[k]) {
+            null == t[k] && (t[k] = {}), (t[k][h[k][l]] = q(k + "." + h[k][l]));
+          }
+        a = s.createElement(o);
+        m = s.getElementsByTagName(o)[0];
+        a.async = 1;
+        a.src = g;
+        m.parentNode.insertBefore(a, m);
+        i.moe =
+          i.moe ||
+          function() {
+            n = arguments[0];
+            return t;
+          };
+        a.onload = function() {
+          if (n) {
+            i[r] = moe(n);
+          }
+        };
+      })(
+        window,
+        document,
+        "script",
+        "https://cdn.moengage.com/webpush/moe_webSdk.min.latest.js",
+        "Moengage"
+      );
+
+      Moengage = moe({
+        app_id: "XXXXXXXXXXXXXXXXXXXXXXXX", // here goes your App Id
+        debug_logs: 0,
+      });
+    </script>
+  </head>
+  <body>
+    <h1>Sample Web SDK Integration</h1>
+    <p>Web Personalization - V2</p>
+  </body>
+</html>
